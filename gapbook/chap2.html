@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (UkrGAP) - Глава 2: Язык программирования GAP</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap2"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap1.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap3.html">[Следующая глава]</a>&nbsp;  </div>
+
+<p><a id="X83A077CA87EC7A77" name="X83A077CA87EC7A77"></a></p>
+<div class="ChapSects"><a href="chap2.html#X83A077CA87EC7A77">2 <span class="Heading">Язык программирования <strong class="pkg">GAP</strong></span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7BD4DA007A086A2D">2.1 <span class="Heading">Символы и категории слов в <strong class="pkg">GAP</strong></span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7E3A90B37E09D204">2.2 <span class="Heading">Ключевые слова</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7F489FFF7ED78D8C">2.3 <span class="Heading">Идентификаторы</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8756A4F57C5E1FB3">2.4 <span class="Heading">Выражения</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7DACF1D57AB99196">2.5 <span class="Heading">Обращения к функциям</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7E1D71A287B1CF2E">2.6 <span class="Heading">Сравнение выражений</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7C1BAF137E3927AC">2.7 <span class="Heading">Арифметические операторы</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8089E7E579E5EE04">2.8 <span class="Heading">Присваивания</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X86A0C3A17D5C170C">2.9 <span class="Heading">Вызов процедуры</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7E5CF6FA81680361">2.10 <span class="Heading">Команда IF</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X859879F778AAF7CB">2.11 <span class="Heading">Цикл WHILE</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X79EC2C08784A940D">2.12 <span class="Heading">Цикл REPEAT</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8147F73684ACAD58">2.13 <span class="Heading">Цикл FOR</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X7C724AD37E0A3FB9">2.14 <span class="Heading">Функции</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap2.html#X8173EC237BB18D07">2.15 <span class="Heading">Команда RETURN</span></a>
+</span>
+</div>
+</div>
+
+<h3>2 <span class="Heading">Язык программирования <strong class="pkg">GAP</strong></span></h3>
+
+<p><a id="X7BD4DA007A086A2D" name="X7BD4DA007A086A2D"></a></p>
+
+<h4>2.1 <span class="Heading">Символы и категории слов в <strong class="pkg">GAP</strong></span></h4>
+
+<p><strong class="pkg">GAP</strong> воспринимает следующие символы: цифры, буквы (верхний и нижний регистры), пробел, символы табуляции и новой строки, а также специальные символы:</p>
+
+
+<div class="example"><pre>
+
+"     `     (     )     *     +     ,     _     #
+.     /     :     ;     &lt;     =     &gt;     ~     &amp;
+[     \     ]     ^     _     {     }     ! 
+
+</pre></div>
+
+<p>Составленные из символов слова относятся к следующим категориям:</p>
+
+
+<ul>
+<li><p>ключевые слова (зарезервированные последовательности букв нижнего регистра)</p>
+
+</li>
+<li><p>идентификаторы (последовательности цифр и букв, содержащая не менее одной буквы и не являющаяся ключевым словом)</p>
+
+</li>
+<li><p>строки (последовательности произвольных символов, заключенная в двойные кавычки)</p>
+
+</li>
+<li><p>целые числа (последовательности цифр)</p>
+
+</li>
+<li><p>операторы и ограничители в соответствии со следующим списком:</p>
+
+
+<div class="example"><pre>
+
++      -      *      /      ^      ~     !.
+=      &lt;&gt;     &lt;      &lt;=     &gt;      &gt;=    ![
+:=      .     ..     -&gt;     ,      ;     !{
+[       ]     {      }      (      )     :
+
+</pre></div>
+
+</li>
+</ul>
+<p>Следует заметить, что пробелы могут быть использованы для повышения удобочитаемости текста, так как любая последовательность пробелов воспринимается <strong class="pkg">GAP</strong> как один пробел. Таким образом, команда</p>
+
+
+<div class="example"><pre>
+
+if i&lt;0 then a:=-i;else a:=i;fi; 
+
+</pre></div>
+
+<p>может быть записана следующим образом:</p>
+
+
+<div class="example"><pre>
+
+if i &lt; 0  then # если i отрицательное 
+    a := -i; 
+else           # иначе 
+    a := i; 
+fi;
+
+</pre></div>
+
+<p><a id="X7E3A90B37E09D204" name="X7E3A90B37E09D204"></a></p>
+
+<h4>2.2 <span class="Heading">Ключевые слова</span></h4>
+
+<p>Ключевыми словами <strong class="pkg">GAP</strong> являются следующие слова:</p>
+
+
+<div class="example"><pre>
+
+and         do         elif      else       end        fi
+for        function    if        in         local      mod
+not        od          or        repeat     return     then
+until      while       quit      QUIT       break      rec 
+continue
+
+</pre></div>
+
+<p><a id="X7F489FFF7ED78D8C" name="X7F489FFF7ED78D8C"></a></p>
+
+<h4>2.3 <span class="Heading">Идентификаторы</span></h4>
+
+<p>Идентификаторы состоят из букв, цифр, символов подчеркивания <code class="code">_</code>, и должны содержать не менее одной буквы или символа подчеркивания <code class="code">_</code>. При этом регистр является существенным. Примеры идентификаторов:</p>
+
+
+<div class="example"><pre>
+
+a                  foo              LongIdentifier
+hello              Hello            HELLO 
+x100               100x             _100 
+underscores_case   MixedCase 
+
+</pre></div>
+
+<p><a id="X8756A4F57C5E1FB3" name="X8756A4F57C5E1FB3"></a></p>
+
+<h4>2.4 <span class="Heading">Выражения</span></h4>
+
+<p>Примерами выражений являются: переменные, обращения к функциям, целые числа, перестановки, строки, функции, списки, записи. С помощью операторов из них могут быть составлены более сложные выражения. Операторы разбиты на три класса:</p>
+
+
+<ul>
+<li><p>операторы сравнения: <code class="code">     =    &lt;&gt;    &lt;    &lt;=    &gt;    &gt;=    in</code></p>
+
+</li>
+<li><p>арифметические операторы: <code class="code">   +    -    *    /    mod    ^</code></p>
+
+</li>
+<li><p>логические операторы: <code class="code">   not    and    or</code></p>
+
+</li>
+</ul>
+<p>Пример 1:</p>
+
+
+<div class="example"><pre>
+
+gap&gt;2*2;; #два знака ";" подавляют вывод на экран 
+gap&gt;2*2+9=Fibonacci(7) and Fibonacci(13) in Prime;
+true 
+
+</pre></div>
+
+<p>Следует различать глобальные и локальные переменные, различия которых можно видеть из следующего примера: Пример 2:</p>
+
+
+<div class="example"><pre>
+
+g := 0;        # глобальная переменная g 
+x := function ( a, b, c ) 
+   local   y; 
+   g := c;     # c - аргумент функции x 
+   y := function ( y ) 
+       local  d, e, f; 
+       d := y; # y - аргумент функции y 
+       e := b; # b - аргумент функции x 
+       f := g; # g - глобальная переменная g 
+       return d + e + f; 
+   end; 
+   return y(a); # y-локальная переменная функции x
+end; 
+
+</pre></div>
+
+<p><a id="X7DACF1D57AB99196" name="X7DACF1D57AB99196"></a></p>
+
+<h4>2.5 <span class="Heading">Обращения к функциям</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+function-var() 
+function-var( arg-expr {, arg-expr} ) 
+
+</pre></div>
+
+<p>Пример 1:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Fibonacci( 11 ); # обращение к функции "Fibonacci" с аргументом 11</span>
+89
+
+</pre></div>
+
+<p>Пример 2: обращение к операции <code class="code">RightCosets</code>, в котором второй аргумент определяется обращением к другой функции</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RightCosets( G, Intersection( U, V ) );</span>
+
+</pre></div>
+
+<p><a id="X7E1D71A287B1CF2E" name="X7E1D71A287B1CF2E"></a></p>
+
+<h4>2.6 <span class="Heading">Сравнение выражений</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+left-expr = right-expr 
+left-expr &lt;&gt; right-expr
+left-expr &lt; right-expr 
+left-expr &gt; right-expr 
+left-expr &lt;= right-expr 
+left-expr &gt;= right-expr 
+
+</pre></div>
+
+<p>Операторы <code class="code">=</code> и <code class="code">&lt;&gt;</code> проверяют соответственно равенство и неравенство, возвращая <code class="keyw">true</code> или <code class="keyw">false</code>. Заметьте, что с их помощью можно сравнивать любые объекты, т.е. при использовании <code class="code">=</code> и <code class="code">&lt;&gt;</code> никогда не будет получено сообщение об ошибке. Для каждого типа объектов определение равенства может отличаться и описано в соответствующем разделе справочного руководства. Объекты, относящиеся к различным семействам (<em>families</em>) всегда различны, т.е. <code class="code">=</code> приведет к <code class="code">false</code>, и <code class="code">&lt;&gt;</code> - к <code class="code">true</code>. Кроме того, в некоторых случаях для них может быть определено отношение "меньше". Операторы сравнения имеют больший приоритет по сравнению с логическими операторами, но меньший по сравнению с арифметическими. Например, <code class="code">a*b = c and d</code> интерпретируется как <code class="code">((a*b)=c) and d)</code>. Еще один пример (сравнение, левая часть которого является выражением ):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">2 * 2 + 9 = Fibonacci(7); </span>
+true 
+
+</pre></div>
+
+<p><a id="X7C1BAF137E3927AC" name="X7C1BAF137E3927AC"></a></p>
+
+<h4>2.7 <span class="Heading">Арифметические операторы</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
++ right-expr 
+- right-expr 
+left-expr + right-expr 
+left-expr - right-expr 
+left-expr * right-expr 
+left-expr / right-expr 
+left-expr mod right-expr 
+left-expr ^ right-expr 
+
+</pre></div>
+
+<p>Значение, как правило, зависит от типа операндов. <code class="code">mod</code> определен только для целых и рациональных чисел. Для элемента группы <code class="code">^</code> означает возведение в степень, если правый операнд - целое число, а если он - элемент группы, то сопряжение с его помощью. Приоритет операторов (по убыванию):</p>
+
+
+<ul>
+<li><p><code class="code">^</code></p>
+
+</li>
+<li><p>унарные <code class="code">+</code> и <code class="code">-</code></p>
+
+</li>
+<li><p><code class="code">*</code>, <code class="code">/</code>, <code class="code">mod</code></p>
+
+</li>
+<li><p><code class="code">+</code> и <code class="code">-</code></p>
+
+</li>
+</ul>
+<p>Пример:</p>
+
+
+<div class="example"><pre>
+
+-2 ^ -2 * 3 + 1 
+
+</pre></div>
+
+<p>означает</p>
+
+
+<div class="example"><pre>
+
+(-(2 ^ (-2)) * 3) + 1 
+
+</pre></div>
+
+<p>Арифметические операторы имеют наивысший приоритет по сравнению с операторами сравнения и логическими операторами.</p>
+
+<p><a id="X8089E7E579E5EE04" name="X8089E7E579E5EE04"></a></p>
+
+<h4>2.8 <span class="Heading">Присваивания</span></h4>
+
+<p>Командами в <strong class="pkg">GAP</strong> называются: присваивания, вызовы процедур, структуры <code class="code">if</code>, <code class="code">while</code>, <code class="code">repeat</code>, <code class="code">for</code>, а также команда <code class="code">return</code>. Все команды заканчиваются точкой с запятой "<code class="code">;</code>". Присваивания имеют формат</p>
+
+
+<div class="example"><pre>
+
+var := expr; 
+
+</pre></div>
+
+<p>Пример:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">data:= rec( numbers:= [ 1, 2, 3 ] );</span>
+rec( numbers := [ 1, 2, 3 ] )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">data.string:= "string";; data;</span>
+rec( numbers := [ 1, 2, 3 ], string := "string" )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">data.numbers[2]:= 4;; data;</span>
+rec( numbers := [ 1, 4, 3 ], string := "string" )
+
+</pre></div>
+
+<p><a id="X86A0C3A17D5C170C" name="X86A0C3A17D5C170C"></a></p>
+
+<h4>2.9 <span class="Heading">Вызов процедуры</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+procedure-var(); 
+procedure-var( arg-expr {, arg-expr} ); 
+
+</pre></div>
+
+<p>Различие между процедурами и функциями введено для удобства, <strong class="pkg">GAP</strong> же их не различает. Функция возвращает значение, но не производит побочных эффектов. Процедура не возвращает никакого значения, но производит какое-либо действие (например, процедуры <code class="code">Print</code>, <code class="code">Append</code>, <code class="code">Sort</code>).</p>
+
+<p><a id="X7E5CF6FA81680361" name="X7E5CF6FA81680361"></a></p>
+
+<h4>2.10 <span class="Heading">Команда IF</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+if bool-expr1 then statements1 
+  { elif bool-expr2 then statements2 } 
+  [ else statements3 ] 
+fi; 
+
+</pre></div>
+
+<p>При этом частей <code class="code">elif</code> может быть произвольное количество или ни одной. Часть <code class="code">else</code> также может отсутствовать. Пример 1: в командах</p>
+
+
+<div class="example"><pre>
+
+if expr1 then 
+   if expr2 then stats1 
+   else stats2 fi; 
+fi; 
+
+</pre></div>
+
+<p><code class="code">else</code> относится ко второму <code class="code">if</code>, тогда как в командах</p>
+
+
+<div class="example"><pre>
+
+if expr1 then 
+   if expr2 then stats1 fi; 
+else stats2 
+fi; 
+
+</pre></div>
+
+<p>else относится к первому <code class="code">if</code>. Пример 2:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i := 10;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">if 0 &lt; i  then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       s := 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   elif i &lt; 0  then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       s := -1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   else </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       s := 0; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   fi; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s; # знак i</span>
+1
+
+</pre></div>
+
+<p><a id="X859879F778AAF7CB" name="X859879F778AAF7CB"></a></p>
+
+<h4>2.11 <span class="Heading">Цикл WHILE</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+while bool-expr do statements od; 
+
+</pre></div>
+
+<p>Последовательность команд <code class="code">statements</code> выполняется, пока истинно условие <code class="code">bool-expr</code>. При этом сначала проверяется условие, а затем, если оно истинно, выполняются команды. Если уже при первом обращении условие ложно, то последовательность команд <code class="code">statements</code> не выполнится ни разу. Пример:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i := 0;;  s := 0;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">while s &lt;= 200  do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       i := i + 1;  s := s + i^2; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   od; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s; </span>
+204 
+
+</pre></div>
+
+<p><a id="X79EC2C08784A940D" name="X79EC2C08784A940D"></a></p>
+
+<h4>2.12 <span class="Heading">Цикл REPEAT</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+repeat statements until bool-expr; 
+
+</pre></div>
+
+<p>Последовательность команд <code class="code">statements</code> выполняется до тех пор, пока не будет выполняться условие <code class="code">bool-expr</code>. При этом сначала выполняются команды, а затем проверяется условие. Таким образом, при любом начальном значении условия набор команд <code class="code">statements</code> выполнится, по крайней мере, один раз. Пример (вычисление наименьшей суммы квадратов первых <span class="SimpleMath">n</span> последовательных натуральных чисел, превышающей 200):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i := 0;;  s := 0;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">repeat </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       i := i + 1;  s := s + i^2; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   until s &gt; 200; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s; </span>
+204 
+
+</pre></div>
+
+<p><a id="X8147F73684ACAD58" name="X8147F73684ACAD58"></a></p>
+
+<h4>2.13 <span class="Heading">Цикл FOR</span></h4>
+
+<p>Форматы:</p>
+
+
+<div class="example"><pre>
+
+for simple-var in list-expr do statements od;
+for variable in iterator do statements od; 
+for variable in object do statements od;
+
+</pre></div>
+
+<p>В первом варианте последовательность команд <code class="code">statements</code> выполняется для каждого элемента из списка <code class="code">list-expr</code>. Цикл for эквивалентен циклу <code class="code">while</code>:</p>
+
+
+<div class="example"><pre>
+
+loop-list := list; 
+loop-index:= 1; 
+while loop-index &lt;= Length(loop-list) do 
+  variable := loop-list[loop-index]; 
+  ... 
+  statements 
+  ... 
+  loop-index := loop-index+1; 
+od; 
+
+</pre></div>
+
+<p>Список <code class="code">list</code> часто является последовательностью. Команда</p>
+
+
+<div class="example"><pre>
+
+for variable in [from..to] do statements od; 
+
+</pre></div>
+
+<p>соответствует распространенной в других языках команде</p>
+
+
+<div class="example"><pre>
+
+for variable from from to to do statements od; 
+
+</pre></div>
+
+<p>Пример:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s := 0;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for i  in [1..100]  do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       s := s + i; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">od; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s; </span>
+5050 
+
+</pre></div>
+
+<p>В следующем примере изменение списка приводит к выполнению команд для новых его элементов:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := [ 1, 2, 3, 4, 5, 6 ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for i  in l  do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       Print( i, " " ); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       if i mod 2 = 0 then Add( l, 3*i/2 ); fi;</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">od;  Print( "\n" ); </span>
+1 2 3 4 5 6 3 6 9 9 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l; </span>
+[ 1, 2, 3, 4, 5, 6, 3, 6, 9, 9 ] 
+
+</pre></div>
+
+<p>А в следующем - не приводит:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := [ 1, 2, 3, 4, 5, 6 ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for i  in l  do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       Print( i, " " ); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       l := []; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">od;  Print( "\n" ); </span>
+1 2 3 4 5 6 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l; </span>
+[  ] 
+
+</pre></div>
+
+<p>Теперь рассмотрим оставшиеся два варианта цикла FOR:</p>
+
+
+<div class="example"><pre>
+
+for variable in iterator do statements od; 
+for variable in object do statements od;
+
+</pre></div>
+
+<p>Для этого необходимо сначала ввести некоторые понятия, характеризующие объекты, с которыми работает <strong class="pkg">GAP</strong>. Каждый объект имеет свой <em>тип</em>. Тип объекта - это информация, которая используется для того, чтобы решить, применима ли к объекту данная операция, и, для выбора метода ее применения в случае положительного ответа. Например, тип двух объектов определяет, могут ли они быть умножены друг на друга, и если да, то каким способом. Аналогично, тип объекта определяет, может ли быть вычислен порядок (размер) этого объекта, и если да, то как. Тип объекта состоит из двух основных частей, характеризующих разные аспекты объекта, а именно из <em>семейства</em>, к которому он принадлежит, и из набора <em>фильтров</em>. <em>Семейство</em> определяет отношение данного объекта к другим объектам. Например, семейство образуют все подстановки. Другой пример семейства - семейство всех <em>коллекций</em> (collections), подстановок. Последнее семейство содержит множество всех групп подстановок в качестве подмножества. Третий пример - семейство всех рациональных функций с коэффициентами из некоторого семейства. <em>Фильтр</em> можно описать как последовательность <code class="keyw">true</code> и <code class="keyw">false</code>, характеризующую соответствующие параметры данного типа объектов (например, <code class="code">IsAbelian</code>, <code class="code">IsPrime</code>, <code class="code">IsGroup</code> и т.п.). Хотя при выборе метода фильтры не различаются по их происхождению и применению, их можно классифицировать (с небольшими исключениями) на <em>категории</em>, <em>представления</em>, <em>свойства</em>, а также <em>тестеры атрибутов</em>. Набор элементов, лежащих в одном семействе, называется <em>коллекцией</em>. Примерами коллекций являются однородные списки, а также <em>домены</em> (domain) - так в <strong class="pkg">GAP</strong> называются множества с дополнительной структурой, например, группа, класс сопряженных элементов, векторное пространство и т.д. Пусть теперь <code class="code">C</code> - коллекция. Тогда <em>итератор</em> <code class="code">Iterator(C)</code> позволяет организовать перебор всех элементов этой коллекции без повторений. В этом случае цикл FOR эквивалентен следующему циклу:</p>
+
+
+<div class="example"><pre>
+
+while not IsDoneIterator(iterator) do 
+    variable := NextIterator(iterator) 
+    statements 
+od; 
+
+</pre></div>
+
+<p>Если же <code class="code">D</code> - домен, то результат выполнения цикла вида</p>
+
+
+<div class="example"><pre>
+
+for variable in domain do 
+
+</pre></div>
+
+<p>должен быть таким же, как результат выполнения цикла вида</p>
+
+
+<div class="example"><pre>
+
+for variable in AsList(D) do
+
+</pre></div>
+
+<p>Если в цикле FOR объект <code class="code">object</code> не является списком или итератором, то будет вычисляться <code class="code">Iterator(object)</code>. Если это вычисление будет успешным, то будет реализован перебор по итератору.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := Group((1,2,3,4,5),(1,2)(3,4)(5,6));</span>
+Group([ (1,2,3,4,5), (1,2)(3,4)(5,6) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">count := 0;; sumord := 0;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for x in g do</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">count := count + 1; sumord := sumord + Order(x); od;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">count;</span>
+120
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sumord;</span>
+471
+
+</pre></div>
+
+<p>Такая конструкция использует намного меньше памяти, так как итератор может быть намного более компактным, чем список всех элементов. Из цикла FOR можно выйти до его выполнения, используя оператор <code class="code">break</code>. Это особенно эффективно в комбинации с циклом по итератору, например, для поиска элемента с нужным свойством в некотором домене. Этот оператор может быть использован только внутри цикла.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := Group((1,2,3,4,5),(1,2)(3,4)(5,6));</span>
+Group([ (1,2,3,4,5), (1,2)(3,4)(5,6) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for x in g do</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">if Order(x) = 3 then</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">break;</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">fi; od;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x;</span>
+(1,4,3)(2,6,5)
+
+</pre></div>
+
+<p>Оператор <code class="code">continue</code> отменяет выполнение оставшейся части цикла и переходит сразу к выполнению следющей итерации. Этот оператор также может быть использован только внутри цикла.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">g := Group((1,2,3),(1,2));</span>
+Group([ (1,2,3), (1,2) ])
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for x in g do</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">if Order(x) = 3 then</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">continue;</span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">fi; Print(x,"\n"); od;</span>
+()
+(2,3)
+(1,3)
+(1,2)
+
+</pre></div>
+
+<p><a id="X7C724AD37E0A3FB9" name="X7C724AD37E0A3FB9"></a></p>
+
+<h4>2.14 <span class="Heading">Функции</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+function ( [ arg-ident {, arg-ident} ] ) 
+           [ local loc-ident {, loc-ident} ; ] 
+           statements 
+           end 
+
+</pre></div>
+
+<p>Пример функции, которая определяет <span class="SimpleMath">n</span>-е число Фибоначчи:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fib := function ( n ) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        local  f1,  f2,  f3,  i; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        f1 := 1;  f2 := 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        for i  in [3..n]  do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            f3 := f1 + f2; f1 := f2; f2 := f3; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        od; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        return f2; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    end;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( [1..10], fib ); </span>
+[ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ] 
+
+</pre></div>
+
+<p>Ту же функцию можно определить рекурсивно:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fib := function ( n ) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        if n &lt; 3  then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            return 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        else </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            return fib(n-1) + fib(n-2); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        fi; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">    end;; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( [1..10], fib ); </span>
+[ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ] 
+
+</pre></div>
+
+<p>Заметим, что рекурсивная версия требует <span class="SimpleMath">2 fib(n) - 1</span> шагов для вычисления <span class="SimpleMath">fib(n)</span>, тогда как итеративная требует только <span class="SimpleMath">n-2</span> шага. Обе функции, однако, не являются оптимальными, так как библиотечная функция <code class="code">Fibonacci</code> требует порядка log<span class="SimpleMath">(n)</span> шагов. Запись <code class="code">arg-ident -&gt; expr</code> является краткой записью для функции</p>
+
+
+<div class="example"><pre>
+
+function ( arg-ident ) return expr; end 
+
+</pre></div>
+
+<p>Здесь <code class="code">arg-ident</code> - один идентификатор, т.е. таким образом нельзя задать функцию от нескольких переменных. Пример типичного использования такой записи:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Sum( List( [1..100], x -&gt; x^2 ) ); </span>
+338350 
+
+</pre></div>
+
+<p><a id="X8173EC237BB18D07" name="X8173EC237BB18D07"></a></p>
+
+<h4>2.15 <span class="Heading">Команда RETURN</span></h4>
+
+<p>Формат:</p>
+
+
+<div class="example"><pre>
+
+return; 
+return expr; 
+
+</pre></div>
+
+<p>Первая форма прерывает выполнение внутренней (при вызове одной функции из другой) функции и передает управление вызывающей функции, не возвращая при этом никакого значения. Вторая, кроме того, возвращает значение выражения <code class="code">expr</code>.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap1.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap3.html">[Следующая глава]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

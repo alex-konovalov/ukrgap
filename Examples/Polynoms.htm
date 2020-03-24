@@ -1,0 +1,160 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+   <meta name="Author" content="Alexander Konovalov">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en]C-CCK-MCD (ITware edition)  (Win95; U) [Netscape]">
+   <title>Система компьютерной алгебры GAP - учебные примеры</title>
+</head>
+<body>
+<i><font face="Arial,Helvetica"><font size=-1><a href="Examples.htm">Вернуться
+к списку примеров</a></font></font></i>
+<center>
+<hr WIDTH="100%">
+<br><b>Применение GAP для изучения теории многочленов</b></center>
+
+<p>Проще всего задать многочлен от одной переменной можно следующим образом.
+Сначала определим кольцо коэффициентов, а затем определим трансцендентный
+элемент над этим кольцом:
+<p><tt>gap> Q:=Rationals;</tt>
+<br><tt>Rationals</tt>
+<br><tt>gap> x:=Indeterminate(Q);</tt>
+<br><tt>x_1</tt>
+<p>После этого многочлены можно задавать следующим очевидным образом:
+<p><tt>gap> f:=1+x+x^2+5*x^4;</tt>
+<br><tt>1+x_1+x_1^2+5*x_1^4</tt>
+<br><tt>gap> g:=(x+1)*(x-1/2);</tt>
+<br><tt>-1/2+1/2*x_1+x_1^2</tt>
+<p>Не очень удобно то, что хотя мы обозначили переменную как <tt>х</tt>,
+при выводе она все равно обозначается как <tt>x_1</tt>. Этого можно избежать,
+если определить ее следующим образом:
+<p><tt>gap> x:=Indeterminate(Q,"x");</tt>
+<br><tt>x</tt>
+<p>Тогда определенные выше многочлены <tt>f</tt> и <tt>g</tt> будут выглядеть
+так:
+<p><tt>gap> f:=1+x+x^2+5*x^4;</tt>
+<br><tt>1+x+x^2+5*x^4</tt>
+<br><tt>gap> g:=(x+1)*(x-1/2);</tt>
+<br><tt>-1/2+1/2*x+x^2</tt>
+<p>Ниже продемонстрированы действия над многочленами - сложение, вычитание,
+умножение, сравнение:
+<p><tt>gap> f+g; f-g; f*g;</tt>
+<br><tt>1/2+3/2*x+2*x^2+5*x^4</tt>
+<br><tt>3/2+1/2*x+5*x^4</tt>
+<br><tt>-1/2+x^2+3/2*x^3-3/2*x^4+5/2*x^5+5*x^6</tt>
+<br><tt>gap> f=g;</tt>
+<br><tt>false</tt>
+<p>Степень многочлена определяется следующим образом:
+<p><tt>gap> DegreeIndeterminate(f,x);</tt>
+<br><tt>4</tt>
+<br><tt>gap> DegreeIndeterminate(g,x);</tt>
+<br><tt>2</tt>
+<p>Список коэффициентов многочлена и коэффициент при старшем члене можно
+получить так:
+<p><tt>gap> PolynomialCoefficientsOfPolynomial(f,x);</tt>
+<br><tt>[ 1, 1, 1, 0, 5 ]</tt>
+<br><tt>gap> LeadingCoefficient(f);</tt>
+<br><tt>5</tt>
+<p>Производная многочлена вычисляется функцией <b><tt>Derivative</tt></b>:
+<p><tt>gap> Derivative(f);</tt>
+<br><tt>1+2*x+20*x^3</tt>
+<br><tt>gap> Derivative(last);</tt>
+<br><tt>2+60*x^2</tt>
+<br><tt>gap> Derivative(last);</tt>
+<br><tt>120*x</tt>
+<br><tt>gap> Derivative(last);</tt>
+<br><tt>120</tt>
+<br><tt>gap> Derivative(last);</tt>
+<br><tt>0</tt>
+<p>Многочлены можно разложить на множители. В следующем примере видно,
+что первый из многочленов является неприводимым над полем рациональных
+чисел, а второй - нет:
+<p><tt>gap> Factors(f);</tt>
+<br><tt>[ 1+x+x^2+5*x^4 ]</tt>
+<br><tt>gap> Factors(g);</tt>
+<br><tt>[ -1/2+x, 1+x ]</tt>
+<p>Неприводимость многочленов можно проверить и следующим образом:
+<p><tt>gap> IsIrreducibleRingElement(h);</tt>
+<br><tt>true</tt>
+<br><tt>gap> IsIrreducibleRingElement(g);</tt>
+<br><tt>false</tt>
+<p>Функция <b><tt>Value</tt></b> вычисляет значение многочлена при заданном
+значении переменной:
+<p><tt>gap> Value(f,0);</tt>
+<br><tt>1</tt>
+<br><tt>gap> Value(f,100);</tt>
+<br><tt>500010101</tt>
+<br><tt>gap> Value(f,1);</tt>
+<br><tt>8</tt>
+<p>Функция <tt><b>RootsOfUPol</b> </tt>находит рациональные корни многочленов.
+В следующем примере первый из многочленов не имеет рациональных корней.
+<p><tt>gap> RootsOfUPol(f);</tt>
+<br><tt>[&nbsp; ]</tt>
+<br><tt>gap> RootsOfUPol(g);</tt>
+<br><tt>[ 1/2, -1 ]</tt>
+<p>Теперь проверим второй из результатов:
+<p><tt>gap> Value(g,-1);</tt>
+<br><tt>0</tt>
+<br><tt>gap> Value(g,1/2);</tt>
+<br><tt>0</tt>
+<p>Зададим еще один многочлен:
+<p><tt>gap> h:=2*(x+1);</tt>
+<br><tt>2+2*x</tt>
+<p>Теперь проверим, делится ли <tt>f</tt> на <tt>g</tt> и <tt>g</tt> на
+<tt>h</tt>.
+Функция <tt>Quotient</tt> возвращает частное от деления первого многочлена
+на второй, если такое деление выполнимо, и <tt>fail</tt> - в противном
+случае.
+<p><tt>gap> Quotient(f,g);</tt>
+<br><tt>fail</tt>
+<br><tt>gap> Quotient(g,h);</tt>
+<br><tt>-1/4+1/2*x</tt>
+<p>Ассоциированность многочленов проверяется следующим образом:
+<p><tt>gap> IsAssociated(g,h);</tt>
+<br><tt>false</tt>
+<br><tt>gap> IsAssociated(h,1+x);</tt>
+<br><tt>true</tt>
+<p>Для деления многочлена на многочлен с остатком используются функции
+<b><tt>EuclideanQuotient</tt></b>
+и&nbsp; <b><tt>EuclideanRemainder</tt></b>, которые возвращают неполное
+частное и остаток соответственно:
+<p><tt>gap> q:=EuclideanQuotient(f,g);</tt>
+<br><tt>19/4-5/2*x+5*x^2</tt>
+<br><tt>gap> r:=EuclideanRemainder(f,g);</tt>
+<br><tt>27/8-21/8*x</tt>
+<p>Несложно проверить, что это действительно так:
+<p><tt>gap> f=q*g+r;</tt>
+<br><tt>true</tt>
+<p>Наибольший общий делитель многочленов определяется с помощью функции
+<b><tt>Gcd</tt></b>:
+<p><tt>gap> Gcd(f,g);</tt>
+<br><tt>1</tt>
+<br><tt>gap> Gcd(g,h);</tt>
+<br><tt>1+x</tt>
+<p>Линейное представление наибольшего общего делителя находит функция <b><tt>GcdRepresentation</tt></b>
+:
+<p><tt>gap> v:=GcdRepresentation(f,g);</tt>
+<br><tt>[ 25/66+7/33*x, -41/33-2/33*x-15/11*x^2-35/33*x^3 ]</tt>
+<p>Проверим, что оно найдено правильно:
+<p><tt>gap> Gcd(f,g)=f*v[1]+g*v[2];</tt>
+<br><tt>true</tt>
+<p>Функция <b><tt>Lcm</tt></b> вычисляет наименьшее общее кратное многочленов:
+<p><tt>gap> Lcm(f,g);</tt>
+<br><tt>-1/10+1/5*x^2+3/10*x^3-3/10*x^4+1/2*x^5+x^6</tt>
+<br><tt>gap> Factors(last);</tt>
+<br><tt>[ -1/2+x, 1+x, 1/5+1/5*x+1/5*x^2+x^4 ]</tt>
+<p><tt>gap> Lcm(g,h);</tt>
+<br><tt>-1/2+1/2*x+x^2</tt>
+<br><tt>gap> Factors(last);</tt>
+<br><tt>[ -1/2+x, 1+x ]</tt>
+<p>Подробное описание используемых в этом примере функций и других возможностей
+работы с многочленами, в том числе с многочленами от нескольких переменных,
+может быть найдено в разделах&nbsp; "<a href="http://www-gap.dcs.st-and.ac.uk/~gap/Manual4/ref/C053S000.htm">Rings</a>"
+и "<a href="http://www-gap.dcs.st-and.ac.uk/~gap/Manual4/ref/C062S000.htm">Polynomials
+and Rational Functions</a>" руководства по системе GAP.
+<p>
+<hr WIDTH="100%">
+<br><i><font face="Arial,Helvetica"><font size=-1><a href="Examples.htm">Вернуться
+к списку примеров</a></font></font></i>
+</body>
+</html>

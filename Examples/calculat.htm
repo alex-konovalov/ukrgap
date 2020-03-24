@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+                                                                        
+                      
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Вычисления в групповых кольцах с помощью пакета LAGUNA</title>
+             
+  <meta name="description"
+ content="Calculations in group rings with LAGUNA package">
+</head>
+  <body>
+           <font face="Helvetica, Arial, sans-serif"><small>   </small></font>
+         <i><font face="Arial,Helvetica"><font size="-1"><a
+ href="Examples.htm">Вернуться к списку примеров</a></font></font></i>
+<div align="left">
+<div align="left">
+<div align="left">
+<div align="left">    
+<hr width="100%" size="2">   </div>
+        </div>
+             
+<center></center>
+        </div>
+                   
+<div align="left"><b><small><font face="Helvetica, Arial, sans-serif"><br>
+ </font></small></b> 
+<div align="center"><big><big><font face="Times New Roman, Times, serif"><b><small>Запуск
+GAP и выход из системы</small></b></font></big></big><br>
+  </div>
+ </div>
+     <br>
+  Запуск GAP в ОС Windows осуществляется с помощью командного файла <tt><b>gap.bat</b></tt>,
+который Вы можете найти в подкаталоге "<tt><b>bin</b></tt>" каталога, содержащем
+GAP (например, "<tt><b>С:\gap4r3\</b></tt>"). При успешном запуске GAP на
+экране появится эмблема GAP. После нее будет напечатана дополнительная информация
+о версии системы и установленных компонентах, например:<br>
+<br>
+<b><tt>           #########           ######         ###########          
+###<br>
+        #############          ######         ############         ####<br>
+       ##############         ########        #############       #####<br>
+      ###############         ########        #####   ######      #####<br>
+     ######         #         #########       #####    #####     ######<br>
+    ######                   ##########       #####    #####    #######<br>
+    #####                    ##### ####       #####   ######   ########<br>
+    ####                    #####  #####      #############   ###  ####<br>
+    #####     #######       ####    ####      ###########    ####  ####<br>
+    #####     #######      #####    #####     ######        ####   ####<br>
+    #####     #######      #####    #####     #####         #############<br>
+     #####      #####     ################    #####         #############<br>
+     ######     #####     ################    #####         #############<br>
+     ################    ##################   #####                ####<br>
+      ###############    #####        #####   #####                ####<br>
+        #############    #####        #####   #####                ####<br>
+         #########      #####          #####  #####                ####<br>
+<br>
+<br>
+    Information at:  http://www.gap-system.org<br>
+    Try `?help' for help. See also  `?copyright' and  `?authors'<br>
+<br>
+   Loading the library. Please be patient, this may take a while.<br>
+<br>
+GAP4, Version: 4.3fix4 of December 20, 2002, i686-pc-cygwin-gcc<br>
+Components:  small, small2, small3, small4, small5, small6, small7,<br>
+             small8, id2, id3, id4, id5, id6, trans, prim  loaded.<br>
+Packages:    tomlib, crisp, cryst, polycyclic, crystcat, ctbllib,<br>
+             EDIM, GAPDoc, factint, laguna  loaded.</tt><br>
+</b><br>
+Приглашение системы (командная строка) имеет следующий вид:<br>
+<blockquote><tt><b>gap&gt;</b></tt><br>
+</blockquote>
+Для выхода из системы применяется команда <tt><b><br>
+</b></tt>
+<blockquote><tt><b>quit;</b></tt><br>
+</blockquote>
+Заметим, что любая команда завершается точкой с запятой, после чего нужно
+нажать &lt;<i>Enter</i>&gt;.<br>
+<br>
+Для сохранения введенных команд и выводимых на экран результатов в текстовом
+файле используется команда<br>
+<blockquote><tt><b>LogTo("filename.log");</b></tt><br>
+</blockquote>
+Ведение этого файла прекращается командой <br>
+<blockquote><tt><b>LogTo();</b></tt> <br>
+</blockquote>
+<br>
+<div align="center"><big><b>Простейшие вычисления в GAP</b></big><br>
+</div>
+<br>
+После приглашения системы (<tt><b>gap&gt;</b></tt>) вы можете использовать
+ее в качестве обыкновенного калькулятора:<br>
+<blockquote><tt><b>gap&gt; (4+130)*(5-17);</b></tt><br>
+  <tt><b>-1608</b></tt><br>
+  <tt><b>gap&gt; 1235/67890;</b></tt><br>
+  <tt><b>247/13578</b></tt><br>
+  <tt><b>gap&gt; 2^65;</b></tt><br>
+  <tt><b>36893488147419103232</b></tt><br>
+</blockquote>
+Для удобства вычислений и написания формул в процессе диалога можно вводить
+переменные, например:<br>
+<blockquote><b><tt>gap&gt; a:=100;<br>
+100<br>
+gap&gt; b:=25;<br>
+25<br>
+gap&gt; (a+50)/b;<br>
+6 <br>
+  </tt></b></blockquote>
+    
+<div align="center">     
+<hr width="100%" size="2"></div>
+  </div>
+  <a href="http://www.zsu.zp.ua/ppages/konoval/konov.htm"><i><font
+ face="Arial,Helvetica"><font size="-1"></font></font></i></a><i><font
+ face="Arial,Helvetica"><font size="-1"><a href="Examples.htm">Вернуться к
+списку примеров</a></font></font></i><br>
+  <br>
+ <br>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                    
+  <meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+                    
+  <meta name="Author" content="Alexander Konovalov">
+                    
+  <meta name="GENERATOR"
+ content="Mozilla/4.76 [en]C-CCK-MCD (ITware edition)  (Win95; U) [Netscape]">
+  <title>Система компьютерной алгебры GAP - учебные примеры</title>
+</head>
+  <body>
+     <i><font face="Arial,Helvetica"><font size="-1"><a
+ href="Examples.htm">Вернуться  к списку примеров</a> </font></font></i>
+    
+<center>     
+<hr width="100%"> </center>
+          
+<div align="center"><b><br>
+Бинарные отношения в GAP</b><br>
+    </div>
+       
+<p>Бинарным отношением <i>R</i> на множестве <i>M</i> называется подмножество
+декартового квадрата множества <i>М</i>. Бинарное отношение также можно рассматривать
+как соответствие, для которого область отправления и область прибытия совпадают
+с множеством <i>M</i>. Если множество <i>M</i> конечно, то бинарное отношение
+можно наглядно представить в виде ориентированного графа, в котором из вершины,
+соответствующей элементу <i>x</i>, проведено ребро в вершину, соответствующую
+элементу <i>y</i>, тогда и только тогда, когда <i>x R y</i>.<br>
+<br>
+Для задания бинарных отношений на множестве {1, ..., <i>n</i> } в GAP используется
+функция <small><font face="Courier New, Courier, monospace"><b>BinaryRelationOnPoints</b></font></small>.
+Ее аргументом является список <i>list</i>, состоящий, в свою очередь, из
+<i>n</i> списков (возможно, пустых), и означающий, что число <i>i</i> находится
+в отношении <i>R</i> с каждым из элементов <i>i</i>-го списка. <br>
+<br>
+При этом <i>n</i> определяется автоматически как максимальное число, содержащееся
+в аргументе <i>list</i>. В случае несоответствия <i>n</i> длине списка <i>list</i>
+выводится сообщение об ошибке. Так, например, нельзя использовать запись<small><font
+ face="Courier New, Courier, monospace"><b> BinaryRelationOnPoints([[1,2,3],[2]])</b></font></small>
+- вместо этого нужно писать <small><font
+ face="Courier New, Courier, monospace"><b>BinaryRelationOnPoints([[1,2,3],[2],[]])</b></font></small>.<br>
+<br>
+Итак, зададим бинарное отношение <i>R</i> на множестве {1,2,3}, состоящее
+из упорядоченных пар (1,1), (1,2), (2,3), (3,1) и (3,2), что означает, что
+выполняются соотношения 1 <i>R</i> 1, 1 <i>R</i> 2, 2 <i>R</i> 3, 3 <i>R</i>
+1 и 3 <i>R</i> 2.</p>
+<blockquote><big><tt><small><b>gap&gt; R:=BinaryRelationOnPoints([[1,2],[3],[1,2]]);</b><br>
+  <b>Binary Relation on 3 points</b></small></tt></big><br>
+</blockquote>
+<p>Исходный список, с помощью которого было задано бинарное отношение <small><font
+ face="Courier New, Courier, monospace"><b>R</b></font></small>, можно получить
+с помощью функции <font face="Courier New, Courier, monospace"><small><b>Successors</b></small></font>:</p>
+<blockquote><small><b><tt><big>gap&gt; s:=Successors(R);<br>
+[ [ 1, 2 ], [ 3 ], [ 1, 2 ] ]</big></tt></b></small><font
+ face="Courier New, Courier, monospace"><small><b><br>
+  </b></small></font></blockquote>
+<p>Таким образом, по определению функций <small><font
+ face="Courier New, Courier, monospace"><b>BinaryRelationOnPoints</b></font></small>
+и <font face="Courier New, Courier, monospace"><small><b>Successors</b></small></font>,
+всегда выполняется равенство <font
+ face="Courier New, Courier, monospace"><small><b>R = BinaryRelationOnPoints(Successors(R))</b></small></font>.<br>
+<br>
+Бинарное отношение равенства и пустое бинарное отношение на этом же множестве
+{1,2,3} можно получить непосредственно с помощью функций <font
+ face="Courier New, Courier, monospace"><b><small>IdentityBinaryRelation
+</small></b></font>и <font face="Courier New, Courier, monospace"><small><b>EmptyBinaryRelation
+</b></small></font>(обратите внимание на результат, возвращаемый функцией
+<small><font face="Courier New, Courier, monospace"><b>Successors</b></font></small>):</p>
+<blockquote><tt><big><small><b>gap&gt; IdentityBinaryRelation(3);<br>
+&lt;equivalence relation on &lt;object&gt; &gt;<br>
+gap&gt; Successors(last);<br>
+[ [ 1 ], [ 2 ], [ 3 ] ]<br>
+  </b></small></big></tt></blockquote>
+<blockquote><tt><big><small><b>gap&gt; EmptyBinaryRelation(3);<br>
+Binary Relation on 3 points<br>
+gap&gt; Successors(last);<br>
+[ [  ], [  ], [  ] ]</b></small></big></tt><br>
+</blockquote>
+<p>Теперь получим случайным образом составленное бинарное отношение на 3-х
+точках, а затем выясним, какими свойствами оно обладает. Заметьте, что количество
+точек можно узнать с помощью функции <font
+ face="Courier New, Courier, monospace"><small><b>DegreeOfBinaryRelation</b></small></font>:</p>
+<blockquote><small><b><tt><big>gap&gt; R:=RandomBinaryRelationOnPoints(3);<br>
+Binary Relation on 3 points<br>
+gap&gt; Successors(last);<br>
+[ [ 1 ], [ 2, 3 ], [ 1, 3 ] ]<br>
+gap&gt; DegreeOfBinaryRelation(r);<br>
+3</big></tt></b></small><font face="Courier New, Courier, monospace"><small><b><br>
+  </b></small></font></blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i>  называется <i><b>рефлексивным</b></i>
+на <i>M</i>, если <i>x R x</i> для каждого элемента <i>x</i> множества <i>M</i>.
+В нашем случае <font face="Courier New, Courier, monospace"><small><b>R</b></small></font>
+- рефлексивно:</p>
+<blockquote><big><tt><small><b>gap&gt; IsReflexiveBinaryRelation(R);</b></small><br>
+  <small><b>true</b></small></tt></big></blockquote>
+<p>Пример бинарного отношения, которое не является рефлексивным:</p>
+<blockquote>
+  <p><big><tt><small><b>gap&gt; T:=BinaryRelationOnPoints([[2,3],[2],[3]]);<br>
+Binary Relation on 3 points<br>
+gap&gt; IsReflexiveBinaryRelation(T);<br>
+false</b></small></tt></big></p>
+</blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>антирефлексивным
+</i></b>на <i>M</i>, если условие <i>x R x</i> не выполняется для каждого
+элемента <i>x</i> множества <i>M</i>. В нашем случае <font
+ face="Courier New, Courier, monospace"><small><b>R</b></small></font> не
+является антирефлексивным, что можно проверить следующим образом:</p>
+<blockquote><tt><big><b><small>gap&gt; r:=Successors(R);</small></b><br>
+  <b><small>[ [ 1 ], [ 2, 3 ], [ 1, 3 ] ]</small></b><br>
+  <b><small>gap&gt; ForAll(r, i -&gt; not Position(r,i) in i);</small></b><br>
+  <b><small>false</small></b></big></tt></blockquote>
+<p>Бинарное отношение <font face="Courier New, Courier, monospace"><b><small>T</small></b></font>
+из предыдущего примера не является ни рефлексивным, ни антирефлексивным:<br>
+</p>
+<blockquote>
+  <p><tt><big><b><small>gap&gt; t:=Successors(T);<br>
+[ [ 2, 3 ], [ 2 ], [ 3 ] ]<br>
+gap&gt; ForAll(t, i -&gt; not Position(t,i) in i);<br>
+false</small></b></big></tt></p>
+</blockquote>
+<p>Пример антирефлексивного бинарного отношения:</p>
+<blockquote><big><tt><small><b>gap&gt; T:=BinaryRelationOnPoints([[2,3],[1],[2]]);</b></small><br>
+  <small><b>Binary Relation on 3 points</b></small><br>
+  <small><b>gap&gt; t:=Successors(T);</b></small><br>
+  <small><b>[ [ 2, 3 ], [ 1 ], [ 2 ] ]</b></small><br>
+  <small><b>gap&gt; ForAll(t, i -&gt; not Position(t,i) in i);</b></small><br>
+  <small><b>true</b></small></tt></big><br>
+</blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <i><b>симметричным
+</b></i>на <i>M</i>, если для любых элементов <i>x</i> и <i>y</i> множества
+<i>M</i> из того, что <i>x R y</i> следует, что <i>y R x</i>. В нашем случае
+<font face="Courier New, Courier, monospace"><small><b>R</b></small></font>
+не является симметричным:</p>
+<blockquote><big><tt><b><small>gap&gt; IsSymmetricBinaryRelation(R);</small></b><br>
+  <b><small>false</small></b></tt></big><br>
+</blockquote>
+<p>Пример симметричного бинарного отношения:</p>
+<blockquote><big><tt><b><small>gap&gt; T:=BinaryRelationOnPoints([[2,3],[1],[1]]);</small></b></tt></big><br>
+  <big><tt><b><small>Binary Relation on 3 points</small></b></tt></big><br>
+  <big><tt><b><small>gap&gt; IsSymmetricBinaryRelation(T);</small></b></tt></big><br>
+  <big><tt><b><small>true</small></b></tt></big></blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>антисимметричным
+</i></b>на <i>M</i>, если для любых элементов <i>x</i> и <i>y</i> множества
+<i>M</i> из того, что <i>x R y</i> и <i>y R x</i> следует, что <i>x</i> =
+<i>y</i>. В нашем случае <b><tt>R</tt></b> является антисимметричным:</p>
+<blockquote><tt><b>gap&gt; r:=Successors(R);</b></tt><br>
+  <tt><b>[ [ 1 ], [ 2, 3 ], [ 1, 3 ] ]</b></tt><br>
+  <tt><b>gap&gt; IsAntisymmetricBinaryRelation(R);</b></tt><br>
+  <tt><b>true</b></tt><br>
+</blockquote>
+<p>Этот же результат можно было бы получить непосредственной проверкой:<br>
+</p>
+<blockquote><tt><b>gap&gt; ForAll(r,i-&gt;ForAll(i,j-&gt;(not Position(r,i)
+in r[j] or j=Position(r,i))));</b><br>
+  <b>true</b><br>
+  </tt></blockquote>
+<p>Зададим теперь новое бинарное отношение, которое отличается от <tt><b>R</b></tt>
+еще одним соотношением между 1 и 3, и проверим, что оно уже не является ни
+симметричным, ни антисимметричным:</p>
+<blockquote><tt><b>gap&gt; T:=BinaryRelationOnPoints([[1,3],[2,3],[1,3]]);</b></tt><br>
+  <tt><b>Binary Relation on 3 points</b></tt><br>
+  <tt><b>gap&gt; t:=Successors(T);</b></tt><br>
+  <tt><b>[ [ 1, 3 ], [ 2, 3 ], [ 1, 3 ] ]</b></tt><br>
+  <tt><b>gap&gt; IsAntisymmetricBinaryRelation(R);</b></tt><br>
+  <tt><b>false</b></tt><br>
+  <tt><b>gap&gt; IsSymmetricBinaryRelation(T);</b></tt><br>
+  <tt><b>false</b></tt><br>
+</blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>транзитивным
+</i></b>на <i>M</i>, если для любых элементов <i>x</i>, <i>y</i>, <i>z</i>
+множества <i>M</i> из того, что <i>x R y</i> и <i>y R z</i> следует, что
+<i>x R z</i>. В нашем случае бинарное отношение <tt><b>R</b></tt> не является
+транзитивным. Легко проверить, что отношение равенства на этом же множестве
+{1,2,3} является транзитивным.</p>
+<blockquote><tt><b>gap&gt; IsTransitiveBinaryRelation(R);</b><br>
+  <b>false</b><br>
+  <b>gap&gt; IsTransitiveBinaryRelation(IdentityBinaryRelation(3));</b><br>
+  <b>true</b><br>
+  </tt></blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>асимметричным
+</i></b>на <i>M</i>, если для любых элементов <i>x</i> и <i>y</i> множества
+<i>M</i> из того, что выполняется условие <i>x R y</i><i>,</i> следует, что
+не выполняется условие <i>y R x</i>. Сконструированное выше отношение <tt><b>R</b></tt>
+не является асимметричным:<br>
+</p>
+<blockquote>
+  <p><tt><b>gap&gt; r:=Successors(R);<br>
+[ [ 1 ], [ 2, 3 ], [ 1, 3 ] ]<br>
+gap&gt; ForAll(r,i-&gt;ForAll(i,j-&gt;(not Position(r,i) in r[j] )));<br>
+false</b></tt><br>
+  </p>
+</blockquote>
+<p>Пример асимметричного бинарного отношения:<br>
+</p>
+<blockquote><b><tt>gap&gt; T:=BinaryRelationOnPoints([[2],[3],[1]]);<br>
+Binary Relation on 3 points<br>
+gap&gt; t:=Successors(T);<br>
+[ [ 2 ], [ 3 ], [ 1 ] ]<br>
+gap&gt; ForAll(t,i-&gt;ForAll(i,j-&gt;(not Position(t,i) in t[j] )));<br>
+true<br>
+  </tt></b></blockquote>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>отношением
+порядка </i></b>на <i>M</i>, если оно транзитивно и антисимметрично. Отношение
+порядка называется <i><b>нестрогим</b></i>, если оно рефлексивно, и <i><b>строгим</b></i>,
+если оно антирефлексивно. Эти условия проверяются с помощью комбинаций перечисленных
+выше функций.</p>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>отношением
+предпорядка </i></b>на <i>M</i>, если оно рефлексивно и транзитивно. Для
+проверки выполнения этого условия используется функция <tt><b>IsPreOrderBinaryRelation</b></tt>.
+Функция <tt><b>IsPartialOrderBinaryRelation </b></tt>возвращает <b><tt>true</tt></b>,
+если отношение является антисимметричным и является отношением предпорядка,
+и <tt><b>false </b></tt>в противном случае, т.е. если оно является отношением
+нестрогого порядка.</p>
+<p>В GAP имееются функции для построения новых бинарные отношений, которые
+содержат в себе заданные, но обладают при этом некоторыми дополнительными
+свойствами.<br>
+</p>
+<p>Функция <tt><b>SymmetricClosureBinaryRelation </b></tt>возвращает минимальное
+бинарное отношение, которое содержит в себе заданное, и является симметричным
+(сравните, как изменяется при этом результат, возвращаемый функцией <tt><b>Successors</b></tt>):</p>
+<blockquote><tt><b>gap&gt; C:=SymmetricClosureBinaryRelation(R);</b></tt><br>
+  <tt><b>Binary Relation on 3 points</b></tt><br>
+  <tt><b>gap&gt; Successors(C);</b></tt><br>
+  <tt><b>[ [ 1, 3 ], [ 2, 3 ], [ 1, 2, 3 ] ]</b></tt><br>
+</blockquote>
+<p>Аналогичное назначение имеют функции <tt><b>TransitiveClosureBinaryRelation
+</b></tt>и <b><tt>ReflexiveClosureBinaryRelation</tt></b></p>
+<blockquote><tt><b>gap&gt; C:=TransitiveClosureBinaryRelation(R);</b></tt><br>
+  <tt><b>Binary Relation on 3 points</b></tt><br>
+  <tt><b>gap&gt; Successors(C);</b></tt><br>
+  <tt><b>[ [ 1 ], [ 1, 2, 3 ], [ 1, 3 ] ]</b></tt><br>
+  <br>
+  <tt><b>gap&gt; C:=ReflexiveClosureBinaryRelation(R);</b></tt><br>
+  <tt><b>Binary Relation on 3 points</b></tt><br>
+  <tt><b>gap&gt; IsReflexiveBinaryRelation(C);</b></tt><br>
+  <tt><b>true</b></tt><br>
+  <tt><b>gap&gt; Successors(C);</b></tt><br>
+  <tt><b>[ [ 1 ], [ 2, 3 ], [ 1, 3 ] ]</b></tt><br>
+</blockquote>
+<p>В последнем случае <tt><b>C=</b></tt><tt><b>R</b></tt>, так как <tt><b>R</b></tt>
+являлось транзитивным.<br>
+</p>
+<p>Бинарное отношение <i>R</i> на множестве <i>M</i> называется <b><i>отношением
+эквивалентности</i></b>, если оно рефлексивно, симметрично и транзитивно.
+Очевидно, что <tt><b>R</b></tt> не является отношением эквивалентности. GAP
+также легко проверит это:</p>
+<blockquote><tt><b>gap&gt; IsEquivalenceRelation(R);<br>
+false<br>
+  </b></tt></blockquote>
+<p>Очевидно, что последовательное применение рефлексивного, транзитивного
+и симметричного замыкания приведет к отношению эквивалентности:</p>
+<blockquote><tt><b>gap&gt; C:=TransitiveClosureBinaryRelation(R);<br>
+Binary Relation on 3 points<br>
+gap&gt; C:=ReflexiveClosureBinaryRelation(c);<br>
+Binary Relation on 3 points<br>
+gap&gt; C:=SymmetricClosureBinaryRelation(c);<br>
+Binary Relation on 3 points<br>
+gap&gt; IsEquivalenceRelation(C);<br>
+true<br>
+gap&gt; Successors(C);<br>
+[ [ 1, 2, 3 ], [ 1, 2, 3 ], [ 1, 2, 3 ] ]<br>
+  </b></tt></blockquote>
+<p>В этом случае мы получили <i><b>полное </b></i>отношение эквивалентности,
+так любые два элемента <i>x</i> и <i>y</i> множества <i>M</i> находятся в
+отношении <tt><b>C</b></tt>.<br>
+<br>
+Построим теперь отношение сравнимости по модулю три на множестве <i>M</i>={1,2,3,4,5,6}.</p>
+<blockquote><b><tt>gap&gt; R:=BinaryRelationOnPoints([[1,4],[2,5],[3,6],[1,4],[2,5],[3,6]]);;</tt></b><br>
+  <b><tt>gap&gt; Successors(R);</tt></b><br>
+  <b><tt>[ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ], [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]</tt></b><br>
+  <b><tt>gap&gt; IsEquivalenceRelation(R);</tt></b><br>
+  <b><tt>true</tt></b><br>
+</blockquote>
+<p>Мы можем получить разбиение множества <i>M</i> на классы эквивалентности:</p>
+<blockquote><tt><b>gap&gt; EquivalenceRelationPartition(R);<br>
+[ [ 1, 4 ], [ 2, 5 ], [ 3, 6 ] ]<br>
+  </b></tt></blockquote>
+<p>и классы эквивалентности:</p>
+<blockquote><tt><b>gap&gt; C:=EquivalenceClasses(R);</b></tt><br>
+  <tt><b>[ {1}, {2}, {3} ]</b></tt><br>
+</blockquote>
+<p>Классы эквивалентности имеют свое внутреннее представление в системе GAP.
+Возьмем первый из элементов полученного списка классов эквивалентности, и
+проверим, что он действительно является таковым, с помощью функции <tt><b>IsEquivalenceClass</b></tt>:</p>
+<blockquote><tt><b>gap&gt; C[1];<br>
+{1}<br>
+gap&gt; IsEquivalenceClass(C[1]);<br>
+true<br>
+  </b></tt></blockquote>
+<p>Мы можем получить список элементов этого класса следующим образом:</p>
+<blockquote><tt><b>gap&gt; Elements(C[1]);</b><br>
+  <b>[ 1, 4 ]</b><br>
+  </tt></blockquote>
+<p>Далее, для каждого элемента множества <i>M</i> можно найти класс эквивалентности,
+которому он принадлежит:</p>
+<blockquote><tt><b>gap&gt; EquivalenceClassOfElement(R,1);</b></tt><br>
+  <tt><b>{1}</b></tt><br>
+</blockquote>
+<p></p>
+<p></p>
+      
+<p> </p>
+       
+<p> </p>
+       В заключение дадим понятие о том, как можно находить обратные отношения,
+выполнять операции отрицания, пересечения, объединения, разности и композиции
+отношений, заданных на множестве <i>M </i>= { 1, ..., n }. Для заданного
+бинарного отношения <tt><b>R</b></tt> нужно определить с помощью функции
+<small><b><tt><big>DegreeOfBinaryRelation(R)</big></tt></b></small> порядок
+множества <i>M</i>, и вычислить его декартов квадрат. Затем из списка <tt><b>Successors(R)</b></tt>
+сформировать список упорядоченных пар, образующих бинарное отношение. Тогда
+вычисление результата может быть запрограммированно непосредственно исходя
+из определения этих операций (оставляем это читателю). Учтите, что для операций
+пересечения, объединения, разности, композиции необходимо проверять, что
+оба отношения заданы на одном и том же множестве M.<br>
+<br>
+<hr width="100%"><br>
+<br>
+    <i><font face="Arial,Helvetica"><font size="-1"><a
+ href="Examples.htm">Вернуться   к списку примеров</a> </font></font></i> 
+ <br>
+   <br>
+  <br>
+ <br>
+</body>
+</html>

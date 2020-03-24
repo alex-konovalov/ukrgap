@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (UkrGAP) - Глава 3: Структуры данных в GAP</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap3"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap2.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap4.html">[Следующая глава]</a>&nbsp;  </div>
+
+<p><a id="X786A63F479A499AA" name="X786A63F479A499AA"></a></p>
+<div class="ChapSects"><a href="chap3.html#X786A63F479A499AA">3 <span class="Heading">Структуры данных в <strong class="pkg">GAP</strong></span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7D503D3F86A72043">3.1 <span class="Heading">Константы и операторы</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7E93F8D4874A52CF">3.2 <span class="Heading">Переменные и присваивания</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7C724AD37E0A3FB9">3.3 <span class="Heading">Функции</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X844F0E76872E84E9">3.4 <span class="Heading">Списки</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7F1D6787856564F4">3.5 <span class="Heading">Тождественность и равенство списков</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X788F57437C561547">3.6 <span class="Heading">Множества</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7BE2343B7FF823E9">3.7 <span class="Heading">Векторы и матрицы</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7D41884E7855D1B4">3.8 <span class="Heading">Записи</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7836F5F8862AA720">3.9 <span class="Heading">Арифметические прогрессии</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X80B75FA27F96D701">3.10 <span class="Heading">Использование циклов</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X859828CA7E303F02">3.11 <span class="Heading">Дальнейшие операции со списками</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7C724AD37E0A3FB9">3.12 <span class="Heading">Функции</span></a>
+</span>
+</div>
+</div>
+
+<h3>3 <span class="Heading">Структуры данных в <strong class="pkg">GAP</strong></span></h3>
+
+<p><a id="X7D503D3F86A72043" name="X7D503D3F86A72043"></a></p>
+
+<h4>3.1 <span class="Heading">Константы и операторы</span></h4>
+
+<p>Основные принципы задания констант и действий над ними видны из следующих примеров:</p>
+
+<p>Арифметические вычисления:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">12345/25;</span>
+2469/5
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">-3; 17 - 23;</span>
+-3
+-6
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">3^132;</span>
+955004950796825236893190701774414011919935138974343129836853841
+
+</pre></div>
+
+<p>Действия с подстановками:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3);</span>
+(1,2,3)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3) * (1,2);</span>
+(2,3)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3)^-1;</span>
+(1,3,2)
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">2^(1,2,3);</span>
+3
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3)^(1,2);</span>
+(1,3,2)
+
+</pre></div>
+
+<p>Задание символьных констант:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">'a';</span>
+'a'
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">"abc";</span>
+"abc"
+
+</pre></div>
+
+<p><a id="X7E93F8D4874A52CF" name="X7E93F8D4874A52CF"></a></p>
+
+<h4>3.2 <span class="Heading">Переменные и присваивания</span></h4>
+
+<p>Порядок присваивания демонстрируется следующим примером:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:= (9 - 7) * (5 + 6);</span>
+22
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a;</span>
+22
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:= 10;</span>
+10
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a * (a + 1);</span>
+110
+
+</pre></div>
+
+<p>Примечание 1. После присваивания присвоенное значение отображается в следующей строке вывода. Это можно подавить, если завершить команду двумя знаками <code class="code">;</code> вместо одного:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">w:= 2;;</span>
+
+</pre></div>
+
+<p>Примечание 2. Всякий раз, когда <strong class="pkg">GAP</strong> возвращает значение, печатая его в следующей после команды строке, это значение присваивается переменной с именем <code class="code">last</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(9 - 7) * (5 + 6);</span>
+22
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:= last;</span>
+22
+
+</pre></div>
+
+<p>Аналогичным образом определяются переменные <code class="code">last2</code> и <code class="code">last3</code>.</p>
+
+<p><a id="X7C724AD37E0A3FB9" name="X7C724AD37E0A3FB9"></a></p>
+
+<h4>3.3 <span class="Heading">Функции</span></h4>
+
+<p><strong class="pkg">GAP</strong> содержит более 4000 стандартных функций. Пример обращения к нескольким из них приведен ниже:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Factorial(17); </span>
+355687428096000 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Gcd(1234, 5678); </span>
+2 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(1234, "\n"); </span>
+1234 
+
+</pre></div>
+
+<p>Кроме того, пользователь может вводить собственные функции. Наиболее просто это делается так:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">cubed:= x -&gt; x^3; </span>
+function( x ) ... end 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">cubed(5); </span>
+125 
+
+</pre></div>
+
+<p>Другой способ определения функций и процедур изложен в пунктах <a href="chap2.html#X7C724AD37E0A3FB9"><span class="RefLink">2.14</span></a> и <a href="chap3.html#X7C724AD37E0A3FB9"><span class="RefLink">3.12</span></a>. Рекомендации по разработке программ на языке <strong class="pkg">GAP</strong> содержатся в Приложении <a href="chapA.html#X7A77D4FB8314E47A"><span class="RefLink">A</span></a>.</p>
+
+<p><a id="X844F0E76872E84E9" name="X844F0E76872E84E9"></a></p>
+
+<h4>3.4 <span class="Heading">Списки</span></h4>
+
+<p>Список является заключенным в квадратные скобки набором объектов, разделенных запятыми. Например, список из первых десяти простых чисел можно задать следующим образом:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes:=[2, 3, 5, 7, 11, 13, 17, 19, 23, 29];</span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ] 
+
+</pre></div>
+
+<p>Затем к нему можно добавить следующие два простых числа:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Append(primes, [31, 37]); </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37 ] 
+
+</pre></div>
+
+<p>Если добавляется только один элемент, это можно сделать и по-другому:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Add(primes, 41); </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41 ] 
+
+</pre></div>
+
+<p>Указать отдельный элемент списка можно по его номеру в списке:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes[7]; </span>
+17 
+
+</pre></div>
+
+<p>Этот же механизм позволяет присвоить значение существующему или новому элементу списка (функция <code class="code">Length</code> определяет длину списка):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(primes); </span>
+13 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes[14]:= 43; </span>
+43 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43 ]
+
+</pre></div>
+
+<p>При этом значение не обязательно должно присваиваться следующему элементу списка. Например, если двадцатым простым числом является 71, мы можем сразу присвоить значение 71 двадцатому элементу списка <code class="code">primes</code>, пропуская недостающие элементы. Полученный список будет иметь длину 20:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes[20]:= 71; </span>
+71 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,,,,,, 71 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length(primes); </span>
+20 
+
+</pre></div>
+
+<p>Список должен быть создан перед заданием его элемента (например, быть пустым списком <code class="code">[ ]</code> ):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll[1]:= 2; </span>
+Error, Variable: 'lll' must have a value
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll:= [];;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll[1]:= 2;</span>
+2 
+
+</pre></div>
+
+<p>Функция <code class="code">Position</code> возвращает номер первого элемента списка, имеющего заданное значение. Если в списке нет элемента с заданным значением, функция возвращает <code class="keyw">false</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Position(primes, 17); </span>
+7 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Position(primes, 20); </span>
+fail 
+
+</pre></div>
+
+<p>Заметим, что при всех приведенных выше изменениях списка <code class="code">primes</code> длина списка изменялась автоматически. Функция <code class="code">IsBound</code> для списков показывает, содержит ли список элемент с заданным номером (для записей - содержит ли запись указанное поле):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">k:= [ , 2, 3, , 5, , 7, , , , 11 ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsBound(k[7]); IsBound(k[4]); IsBound(k[20]); </span>
+true 
+false 
+false 
+
+</pre></div>
+
+<p>Список может состоять из объектов различных типов, например:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll:= [true, "This is a String",,, 3]; </span>
+[ true, "This is a String",,, 3 ] 
+
+</pre></div>
+
+<p>Далее, список может являться частью другого списка:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll[3]:= [4,5,6];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll; </span>
+[ true, "This is a String", [ 4, 5, 6 ],, 3 ] 
+
+</pre></div>
+
+<p>и даже частью самого себя:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">lll[4]:= lll; </span>
+[ true, "This is a String", [ 4, 5, 6 ], ~, 3 ] 
+
+</pre></div>
+
+<p>Здесь знак <code class="code">~</code> в четвертой позиции обозначает объект, вывод которого на экран (печать) производится в данный момент. Строки являются частным случаем списков, и печатаются без разделителей. Примеры задания строк и операций над ними:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s1:=['H','e','l','l','o',' ','w','o','r','l','d','.'];</span>
+"Hello world." 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s2 := "Hello world."; </span>
+"Hello world." 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s1 = s2; </span>
+true 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s2[7]; </span>
+'w' 
+
+</pre></div>
+
+<p>Извлечение и изменение подмножеств списка производит оператор <code class="code">{ }</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl := lll{ [ 1, 2, 3 ] }; </span>
+[ true, "This is a String", [ 4, 5, 6 ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl{ [ 2, 3 ] } := [ "New String", false ]; </span>
+[ "New String", false ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sl; </span>
+[ true, "New String", false ] 
+
+</pre></div>
+
+<p><a id="X7F1D6787856564F4" name="X7F1D6787856564F4"></a></p>
+
+<h4>3.5 <span class="Heading">Тождественность и равенство списков</span></h4>
+
+<p>Для изучения способов управления сложными структурами данных в <strong class="pkg">GAP</strong> важно понимать различия между тождественными и равными объектами. В данном разделе это различие демонстрируется на примере списков. Аналогичные примеры могут быть подобраны и для записей.</p>
+
+<p>Два списка равны (т.е. оператор сравнения <code class="code">=</code> возвращает true) тогда и только тогда, когда они имеют одинаковую длину и их соответствующие элементы равны.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers:= primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,,,,,, 71 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers = primes; </span>
+true 
+
+</pre></div>
+
+<p>Теперь изменим список <code class="code">numbers</code> и снова сравним его с <code class="code">primes</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes[3]:= 4; </span>
+4 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers = primes; </span>
+true
+
+</pre></div>
+
+<p>Оказывается, что списки <code class="code">numbers</code> и <code class="code">primes</code> снова равны, а распечатав список <code class="code">primes</code>, мы увидим, что <code class="code">primes[3]=4</code>. Это объясняется тем, что списки <code class="code">primes</code> и <code class="code">numbers</code> не только равны, но и идентичны. Идентификаторы <code class="code">primes</code> и <code class="code">numbers</code> указывают на один и тот же список, и изменения в нем происходят при указании любого из его имен. Присваивание <code class="code">numbers:= primes</code> создает не новый список, а только новое имя для уже существующего списка.</p>
+
+<p>Если необходимо изменить список, совпадающий по содержанию с <code class="code">primes</code> таким образом, чтобы сам список <code class="code">primes</code> при этом не изменился, необходимо создать копию списка <code class="code">primes</code> с помощью функции <code class="code">ShallowCopy</code> (в следующем примере предварительно восстановим старое значения <code class="code">primes</code>):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes[3]:= 5; </span>
+5 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,,,,,, 71 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers:= ShallowCopy(primes); </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43,,,,,, 71 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers = primes; </span>
+true 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers[3]:= 4; </span>
+4 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers = primes; </span>
+false
+
+</pre></div>
+
+<p>Примечание. Единственными объектами, которые могут быть изменены таким способом, являются списки и записи, т.к. только эти объекты в <strong class="pkg">GAP</strong> могут состоять из других объектов. Например, после выполнения следующих команд значения <code class="code">i</code> и <code class="code">j</code> будут соответственно равны 2 и 1:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i:= 1;; j:= i;; i:= i+1;; </span>
+
+</pre></div>
+
+<p>Упражнение. Объяснить, что происходит в результате выполнения команд:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l:= []; </span>
+[  ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l:= [l]; </span>
+[ [  ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l[1]:= l; </span>
+[ ~ ] 
+
+</pre></div>
+
+<p><a id="X788F57437C561547" name="X788F57437C561547"></a></p>
+
+<h4>3.6 <span class="Heading">Множества</span></h4>
+
+<p>Множествами в <strong class="pkg">GAP</strong> называются списки специального вида. Элементы множества расположены последовательно (т.е. не содержат пробелов, как, например, список <code class="code">[ 2, 3, 5, , , , , , , , 31, 37, 41 ]</code>), упорядочены (порядок сортировки <strong class="pkg">GAP</strong> определяет самостоятельно) и встречаются в списке только один раз. Множества, как и списки, могут содержать объекты различных типов.</p>
+
+<p>Проверить, является ли объект множеством, можно с помощью функции <code class="code">IsSet</code>. Для каждого списка существует соответствующее ему множество, получаемое с помощью функции <code class="code">Set</code>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fruits:=["apple", "strawberry", "cherry", "plum", "apple"];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsSet(fruits); </span>
+false 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fruits:= Set(fruits); </span>
+[ "apple", "cherry", "plum", "strawberry" ] 
+
+</pre></div>
+
+<p>Заметим, что при этом исходный список <code class="code">fruits</code> был изменен.</p>
+
+<p>Для проверки принадлежности объекта множеству используется оператор <code class="code">in</code>. Его также можно использовать для проверки принадлежности к списку, однако в первом случае проверка выполняется быстрее, т.к. сортировка позволяет использовать двоичный поиск вместо последовательного перебора.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">"apple" in fruits; </span>
+true 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">"banana" in fruits; </span>
+false 
+
+</pre></div>
+
+<p>Добавить к множеству новый элемент можно с помощью функции <code class="code">AddSet</code> (обратите внимание на порядок следования элементов):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AddSet(fruits, "banana"); </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fruits; </span>
+[ "apple", "banana", "cherry", "plum", "strawberry" ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AddSet(fruits, "apple"); </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fruits;        # 'fruits' не изменилось </span>
+[ "apple", "banana", "cherry", "plum", "strawberry" ] 
+
+</pre></div>
+
+<p>Пересечение, объединение и разность множеств определяются с помощью функций <code class="code">Intersection</code>, <code class="code">Union</code> и <code class="code">Difference</code>. При этом аргументы могут быть обычными списками, тогда как результат всегда будет являться множеством.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">breakfast:= ["tea", "apple", "egg"]; </span>
+[ "tea", "apple", "egg" ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Intersection(breakfast, fruits); </span>
+[ "apple" ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Difference(breakfast,fruits); </span>
+[ "egg", "tea" ] 
+
+</pre></div>
+
+<p>Те же операции над множествами производят функции <code class="code">IntersectSet</code>, <code class="code">UniteSet</code> и <code class="code">RemoveSet</code>, но они не возвращают результат, а заменяют им первый аргумент.</p>
+
+<p><a id="X7BE2343B7FF823E9" name="X7BE2343B7FF823E9"></a></p>
+
+<h4>3.7 <span class="Heading">Векторы и матрицы</span></h4>
+
+<p>Вектор является не содержащим пробелов списком элементов, принадлежащих общему полю.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v:= [3, 6, 2, 5/2]; </span>
+[ 3, 6, 2, 5/2 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">IsRowVector(v); </span>
+true
+
+</pre></div>
+
+<p>Векторы умножаются на скаляры из любого поля, содержащего данное. Умножение двух векторов равной длины дает их скалярное произведение.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">2 * v; </span>
+[ 6, 12, 4, 5 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v * 1/3;  # это эквивалентно команде v/3; </span>
+[ 1, 2, 2/3, 5/6 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v * v; # скалярное произведение v на себя</span>
+221/4  
+
+</pre></div>
+
+<p>Матрица - список векторов одинаковой длины, не содержащий пробелов:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:= [[1, -1, 1], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        [2, 0, -1], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        [1, 1, 1]]; </span>
+[ [ 1, -1, 1 ], [ 2, 0, -1 ], [ 1, 1, 1 ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m[2][1]; </span>
+2 
+
+</pre></div>
+
+<p>Матрицы можно умножать на скаляры, векторы и другие матрицы (при этом умножение обобщается и возможно также при несответствии размеров):</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m:= [[1, 2, 3, 4], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        [5, 6, 7, 8], </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">        [9,10,11,12]]; </span>
+[ [ 1, 2, 3, 4 ], [ 5, 6, 7, 8 ], [ 9, 10, 11, 12 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(m); </span>
+[ [   1,   2,   3,   4 ], 
+  [   5,   6,   7,   8 ], 
+  [   9,  10,  11,  12 ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[1, 0, 0, 0] * m;</span>
+[ 1, 2, 3, 4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[1, 0, 0] * m; </span>
+[ 1, 2, 3, 4 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m * [1, 0, 0]; </span>
+[ 1, 5, 9 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m * [1, 0, 0, 0];</span>
+[ 1, 5, 9 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">m * [0, 1, 0, 0];</span>
+[ 2, 6, 10 ]
+
+</pre></div>
+
+<p>Заметим, что умножение вектора на матрицу приводит к линейной комбинации строк матрицы, тогда как умножение матрицы на вектор приводит к линейной комбинации ее столбцов. В последнем случае вектор рассматривается как вектор-столбец.</p>
+
+<p>Подматрицы извлекаются или изменяются с помощью фигурных скобок:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sm := m{ [ 1, 2 ] }{ [ 3, 4 ] }; </span>
+[ [ 3, 4 ], [ 7, 8 ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sm{ [ 1, 2 ] }{ [2] } := [[1],[-1]]; </span>
+[ [ 1 ], [ -1 ] ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sm; </span>
+[ [ 3, 1 ], [ 7, -1 ] ] 
+
+</pre></div>
+
+<p>Первая пара скобок указывает выбранные строки, вторая - столбцы.</p>
+
+<p><a id="X7D41884E7855D1B4" name="X7D41884E7855D1B4"></a></p>
+
+<h4>3.8 <span class="Heading">Записи</span></h4>
+
+<p>Другой способ создания новых структур данных - записи. Как и списки, записи - наборы других объектов (которые называются компонентами, или полями), обращение к которым происходит не по номеру, а по имени.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">date:= rec(year:=1992, month:="Jan", day:=13);</span>
+rec( day := 13, month := "Jan", year := 1992 )
+
+</pre></div>
+
+<p>Изначально запись определяется как разделенный запятыми список присваиваний значений ее полям. Для обращения к значению соответствующего поля записи необходимо указать имя записи и имя поля, разделив их точкой. Определив запись, в дальнейшем можно добавлять к ней новые поля.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">date.year; </span>
+1992 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">date.time:=rec(hour:=19,minute:=23,second:=12); </span>
+rec( hour := 19, minute := 23, second := 12 )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">date; </span>
+rec( day := 13, month := "Jan",
+  time := rec( hour := 19, minute := 23, second := 12 ), year := 1992 )
+</pre></div>
+
+<p>Для определения, является ли объект записью, применяется функция <code class="code">IsRecord</code>. Структуру записи можно получить с помощью функции <code class="code">RecNames</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">RecNames(date); </span>
+[ "time", "year", "month", "day" ]
+
+</pre></div>
+
+<p>Упражнение. Что происходит в результате выполнения команд:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= rec(); </span>
+rec( 
+   ) 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r:= rec(r:= r); </span>
+rec( 
+  r := rec( 
+       ) ) 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">r.r:= r; </span>
+rec( 
+  r := ~ ) 
+
+</pre></div>
+
+<p><a id="X7836F5F8862AA720" name="X7836F5F8862AA720"></a></p>
+
+<h4>3.9 <span class="Heading">Арифметические прогрессии</span></h4>
+
+<p>Другим специальным видом списков являются целочисленные конечные арифметические прогрессии. Они описываются первым, вторым и последним элементами, разделенными соответственно запятой или двумя точками, и заключенными в квадратные скобки. Если прогрессия состоит из последовательных чисел, второй элемент может быть опущен.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[1..999999]; #натуральные числа от 1 до 999999</span>
+[ 1 .. 999999 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[1,2..999999];#эквивалентно предыдущей команде </span>
+[ 1 .. 999999 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[1,3..999999]; # здесь шаг равен 2 </span>
+[ 1, 3 .. 999999 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Length( last ); </span>
+500000 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[ 999999, 999997 .. 1 ]; </span>
+[ 999999, 999997 .. 1 ] 
+
+</pre></div>
+
+<p><a id="X80B75FA27F96D701" name="X80B75FA27F96D701"></a></p>
+
+<h4>3.10 <span class="Heading">Использование циклов</span></h4>
+
+<p>Пример 1: вычислить произведение подстановок, являющихся элементами списка.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">pp:=[(1,3,2,6,8)(4,5,9), (1,6)(2,7,8)(4,9), </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">(1,5,7)(2,3,8,6), (1,8,9)(2,3,5,6,4), </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">(1,9,8,6,3,4,7,2) ];; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">prod:= (); </span>
+() 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for p in pp do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      prod:= prod * p; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   od; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">prod; </span>
+(1,8,4,2,3,6,5)
+
+</pre></div>
+
+<p>Пример 2: вычисление n! для n = 15.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ff:= 1; </span>
+1 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for i in [1..15] do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      ff:= ff * i; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   od; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ff; </span>
+1307674368000 
+
+</pre></div>
+
+<p>Пример 3: разложить на простые множители число 1333, используя список простых чисел <code class="code">primes</code>.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">n:= 1333; </span>
+1333 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">factors:= []; </span>
+[  ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for p in primes do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      while n mod p = 0 do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         n:= n/p; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         Add(factors, p); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      od; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   od; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">factors; </span>
+[ 31, 43 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">n; </span>
+1 
+
+</pre></div>
+
+<p>Так как n=1, то процесс завершен (легко проверить, умножив 31 на 43).</p>
+
+<p>Пример 4: составить список простых чисел, не превышающих 1000 (функция <code class="code">Unbind</code> исключает элемент из списка).</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes:= []; </span>
+[  ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">numbers:= [2..1000]; </span>
+[ 2 .. 1000 ] 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">for p in numbers do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      Add(primes, p); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      for n in numbers do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         if n mod p = 0 then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">            Unbind(numbers[n-1]); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         fi; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      od; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   od; </span>
+
+</pre></div>
+
+<p><a id="X859828CA7E303F02" name="X859828CA7E303F02"></a></p>
+
+<h4>3.11 <span class="Heading">Дальнейшие операции со списками</span></h4>
+
+<p>Существует более удобный способ умножения элементов списка из чисел или подстановок.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Product([1..15]); </span>
+1307674368000 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Product(pp); </span>
+(1,8,4,2,3,6,5) 
+
+</pre></div>
+
+<p>Аналогичным образом работает функция <code class="code">Sum</code>.</p>
+
+<p>Пример 1:</p>
+
+<p>Аргументами функции <code class="code">List</code> является список и имя функции. В результате будут создан список значений заданной функции на элементах заданного списка. Например, для нахождения куба числа ранее была определена функция <code class="code">cubed</code>. Составим с ее помощью список кубов чисел от 2 до 10.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([2..10], cubed); </span>
+[ 8, 27, 64, 125, 216, 343, 512, 729, 1000 ]
+
+</pre></div>
+
+<p>Чтобы сложить все эти величины, мы можем применить функцию <code class="code">Sum</code> к последнему списку. Это же можно сделать, используя функцию <code class="code">cubed</code> в качестве дополнительного аргумента функции <code class="code">Sum</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Sum(last) = Sum([2..10], cubed); </span>
+true 
+
+</pre></div>
+
+<p>Пример 2: получение списка простых чисел, меньших 30, из списка <code class="code">primes</code> с помощью функции <code class="code">Filtered</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Filtered(primes, x-&gt; x &lt; 30); </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ]
+
+</pre></div>
+
+<p>Пример 3: оператор <code class="code">{ }</code> извлекает часть списка, определяемую номерами начального и конечного элементов списка:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">primes{ [1 .. 10] }; </span>
+[ 2, 3, 5, 7, 11, 13, 17, 19, 23, 29 ] 
+
+</pre></div>
+
+<p><a id="X7C724AD37E0A3FB9" name="X7C724AD37E0A3FB9"></a></p>
+
+<h4>3.12 <span class="Heading">Функции</span></h4>
+
+<p>Ранее было показано, как обратиться к библиотечным, т.е. стандартным функциям <strong class="pkg">GAP</strong>. Данный раздел посвящен разработке новых функций.</p>
+
+<p>Пример 1: задать простейшую функцию, которая печатает на экране текст "<code class="code">hello, world!</code>".</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sayhello:= function() </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">Print("hello, world!\n"); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">end; </span>
+function(  ) ... end 
+
+</pre></div>
+
+<p>При этом добавление к строке вывода символа <code class="code">\n</code> приведет к тому, что следующее приглашение <strong class="pkg">GAP</strong> появится на новой строке, а не непосредственно после напечатанного текста.</p>
+
+<p>Определение функции начинается с ключевого слова <code class="code">function</code>, после которого в скобках указываются формальные параметры. Скобки необходимы и в том случае, если параметры отсутствуют. Следует обратить внимание на отсутствие точки с запятой после первой команды. Определение функции завершается ключевым словом <code class="code">end</code>.</p>
+
+<p>Функция после ее определения является такой же переменной, как и целые числа, суммы и списки, и может быть присвоена другой переменной. Завершающий знак "<code class="code">;</code>" в приведенном примере не принадлежит к определению функции, а завершает ее присвоение имени <code class="code">sayhello</code>. После этого, в отличие от других присваиваний, значение функции <code class="code">sayhello</code> отображается в сокращенной форме <code class="code">function( ) ... end</code>, отображающей только ее формальные параметры, как наиболее интересную часть.</p>
+
+<p>Полное значение sayhello может быть получено с помощью функции <code class="code">Print</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Print(sayhello, "\n"); </span>
+function (  ) 
+    Print( "hello, world!\n" ); 
+    return; 
+end 
+
+</pre></div>
+
+<p>Обращение к данной функции произойдет по команде <code class="code">sayhello()</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sayhello(); </span>
+hello, world!
+
+</pre></div>
+
+<p>Однако данный пример не является типичным, так как введенная нами функция не возвращает ни одно значение, а только печатает текст.</p>
+
+<p>Пример 2: задание функции, определяющей знак числа.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sign:= function(n) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       if n &lt; 0 then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">          return -1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       elif n = 0 then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">          return 0; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       else </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">          return 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">       fi; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   end; </span>
+function( n ) ... end 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sign(0); sign(-99); sign(11); </span>
+0 
+-1 
+1 
+
+</pre></div>
+
+<p>Пример 3: Числа Фибоначчи определяются рекурсивно: <span class="SimpleMath">f</span> (1) = <span class="SimpleMath">f</span> (2) = 1, <span class="SimpleMath">f</span> (n) = <span class="SimpleMath">f</span> (<span class="SimpleMath">n</span>-1) + <span class="SimpleMath">f</span> (<span class="SimpleMath">n</span>-2).</p>
+
+<p>Так как функция в <strong class="pkg">GAP</strong> может обращаться сама к себе, то функция для вычисления <span class="SimpleMath">n</span>-го числа Фибоначчи может быть задана следующим образом:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fib:= function(n) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      if n in [1, 2] then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         return 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      else </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         return fib(n-1) + fib(n-2); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      fi; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   end; </span>
+function( n ) ... end 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">fib(15); </span>
+610 
+
+</pre></div>
+
+<p>Упражнение: Добавить к данной функции проверку того, что <span class="SimpleMath">n</span> является натуральным числом.</p>
+
+<p>Пример 4: Функция <code class="code">gcd</code>, вычисляющая наибольший общий делитель двух целых чисел по алгоритму Евклида, требует создания локальных переменных в дополнение к формальным параметрам. Описание локальных переменных, если они есть, должно предшествовать всем операторам, входящим в определение функции.</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gcd:= function(a, b) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      local c; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      while b &lt;&gt; 0 do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         c:= b; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         b:= a mod b; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         a:= c; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      od; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      return c; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   end; </span>
+function( a, b ) ... end 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gcd(30, 63); </span>
+3 
+
+</pre></div>
+
+<p>Пример 5: Cоставим функцию, которая определяет количество разложений натурального числа (разложением данного числа называется невозрастающая последовательность натуральных чисел, сумма которых равна данному числу). Все множество разложений для данного числа <span class="SimpleMath">n</span> может быть разделено на подмножества в зависимости от максимального элемента разложения. Тогда количество разложений для <span class="SimpleMath">n</span> равняется сумме по всем возможным <span class="SimpleMath">i</span> количеств разложений для <span class="SimpleMath">n</span>-<span class="SimpleMath">i</span>, элементы которых меньше, чем <span class="SimpleMath">i</span>. Обобщая это, получаем, что количество разложений числа <span class="SimpleMath">n</span>, элементы которых меньше, чем <span class="SimpleMath">m</span>, является суммой (по <span class="SimpleMath">i</span> &lt; <span class="SimpleMath">m</span>,<span class="SimpleMath">n</span>) количества разложений для <span class="SimpleMath">n</span>-<span class="SimpleMath">i</span> с элементами, меньшими, чем <span class="SimpleMath">i</span>. Отсюда получаем следующую функцию:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">nrparts:= function(n) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   local np; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   np:= function(n, m) </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      local i, res; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      if n = 0 then </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         return 1; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      fi; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      res:= 0; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      for i in [1..Minimum(n,m)] do </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">         res:= res + np(n-i, i); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      od; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">      return res; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   end; </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">   return np(n,n); </span>
+<span class="GAPprompt">&gt;</span> <span class="GAPinput">end; </span>
+function( n ) ... end 
+
+</pre></div>
+
+<p>Желая составить функцию, которая имеет один аргумент, мы решили поставленную задачу с помощью рекурсивной процедуры с двумя аргументами. Поэтому понадобилось фактически ввести две функции. Единственной задачей одной из них является вызов другой с двумя равными аргументами.</p>
+
+<p>При этом функция <code class="code">np</code> является локальной по отношению к <code class="code">nrparts</code>. Она могла бы быть определена и независимо, но тогда идентификатор <code class="code">np</code> уже не мог бы быть использован для других целей, а если бы это все-таки произошло, функция <code class="code">nrparts</code> не могла бы обратиться к функции <code class="code">np</code>.</p>
+
+<p>Теперь рассмотрим функцию <code class="code">np</code>, имеющую две локальные переменные <code class="code">res</code> и <code class="code">i</code>. Переменная <code class="code">res</code> используется для суммирования, <code class="code">i</code> - параметр цикла. Внутри цикла опять происходит обращение к функции <code class="code">np</code>, но уже с другими аргументами. Однако для быстродействия программы предпочтительнее избегать рекурсивных процедур, если только можно без них обойтись.</p>
+
+<p>Упражнение: Предложить решение последней задачи, не используя рекурсивные процедуры.</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap2.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap4.html">[Следующая глава]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

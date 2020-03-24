@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (UkrGAP) - Глава 1: Введение</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chap1"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap0.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap2.html">[Следующая глава]</a>&nbsp;  </div>
+
+<p><a id="X86CFB0588420020C" name="X86CFB0588420020C"></a></p>
+<div class="ChapSects"><a href="chap1.html#X86CFB0588420020C">1 <span class="Heading">Введение</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7C3B8CBD872EA888">1.1 <span class="Heading">Краткая характеристика и история системы <strong class="pkg">GAP</strong></span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7F0386167D6F8123">1.2 <span class="Heading">Обзор возможностей <strong class="pkg">GAP</strong></span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7E192E5884F37B28">1.3 <span class="Heading">Инсталляция и запуск системы</span></a>
+</span>
+</div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap1.html#X7DCC72F67D740B0E">1.4 <span class="Heading">Первые шаги в <strong class="pkg">GAP</strong></span></a>
+</span>
+</div>
+</div>
+
+<h3>1 <span class="Heading">Введение</span></h3>
+
+<p><a id="X7C3B8CBD872EA888" name="X7C3B8CBD872EA888"></a></p>
+
+<h4>1.1 <span class="Heading">Краткая характеристика и история системы <strong class="pkg">GAP</strong></span></h4>
+
+<p>Разработка системы компьютерной алгебры <strong class="pkg">GAP</strong> (<span class="URL"><a href="http://www.gap-system.org">http://www.gap-system.org</a></span>), название которой расшифровывается как "<em>Groups, Algorithms and Programming</em>", была начата в 1986 г. в г.Аахен, Германия (<span class="URL"><a href="http://www.math.rwth-aachen.de/LDFM/">http://www.math.rwth-aachen.de/LDFM/</a></span>). В 1997 г. центр координации разработки и технической поддержки пользователей переместился в Университет г.Сент-Эндрюс, Шотландия (<span class="URL"><a href="http://www-circa.mcs.st-and.ac.uk/">http://www-circa.mcs.st-and.ac.uk/</a></span>). В настоящее время <strong class="pkg">GAP</strong> является уникальным всемирным совместным научным проектом, объединяющим специалистов в области алгебры, теории чисел, математической логики, информатики и др. наук из различных стран мира. Основные центры разработки системы находятся в университетах г.Сент-Эндрюс (Шотландия), гг. Аахен, Брауншвейг (Германия) и Университете штата Колорадо (США). Текущая версия системы - <strong class="pkg">GAP</strong> 4.4.10 - была выпущена в октябре 2007 г.</p>
+
+<p>Изначально система <strong class="pkg">GAP</strong> разрабатывалась под Unix, а затем была портирована для работы в других операционных системах. В настоящее время она работает в разнообразных версиях Unix/Linux, а также в Windows и Mac OS. Заметим, что ряд пакетов, расширяющих функциональность системы, работает только в среде Unix/Linux.</p>
+
+<p><strong class="pkg">GAP</strong> является свободно распространяемой, открытой и расширяемой системой. Она распространяется в соответствии с GNU Public License (cм. <span class="URL"><a href="http://www.gap-system.org/Download/copyright.html">http://www.gap-system.org/Download/copyright.html</a></span>). Cистема поставляется вместе с исходными текстами, которые написаны на двух языках: ядро системы написано на Си, а библиотека функций - на специальном языке, также называемом <strong class="pkg">GAP</strong>, который по синтаксису напоминает Pascal, однако является объектно-ориентированным языком. Пользователи могут создавать свои собственные программы на этом языке, и здесь исходные тексты являются незаменимым наглядным пособием. Наконец, разработчики программ для <strong class="pkg">GAP</strong> могут оформить свои разработки в виде пакета для системы <strong class="pkg">GAP</strong> и представить их на рассмотрение в Совет <strong class="pkg">GAP</strong>. После прохождения процедуры рецензирования и одобрения советом <strong class="pkg">GAP</strong> такой пакет включается в приложение к дистрибутиву <strong class="pkg">GAP</strong> и распространяется вместе с ним. Процедура рецензирования позволяет приравнивать принятые Советом <strong class="pkg">GAP</strong> пакеты к научной публикации, и ссылаться на них наравне с другими источниками.</p>
+
+<p>Помимо уже упомянутых пакетов, система состоит из следующих четырех основных компонент:</p>
+
+
+<ul>
+<li><p>ядра системы, обеспечивающего поддержку языка <strong class="pkg">GAP</strong>, работу с системой в программном и интерактивном режиме;</p>
+
+</li>
+<li><p>библиотеки функций, в которой реализованы разнообразные алгебраические алгоритмы (более 4000 пользовательских функций, более 140000 строк программ на языке <strong class="pkg">GAP</strong>);</p>
+
+</li>
+<li><p>библиотеки данных, включая, например, библиотеку всех групп порядка не более 2000 (за исключением 49487365422 групп порядка 1024, точное количество которых, кстати, также было определено с помощью системы <strong class="pkg">GAP</strong>), библиотеку примитивных групп подстановок, таблицы характеров конечных групп и т.д., что в совокупности составляет эффективное средство для выдвижения и тестирования научных гипотез;</p>
+
+</li>
+<li><p>обширной (около полутора тысяч страниц) документации, доступной в разнообразных форматах (<code class="file">txt</code>, <code class="file">pdf</code>, <code class="file">html</code>), а также через Интернет.</p>
+
+</li>
+</ul>
+<p><a id="X7F0386167D6F8123" name="X7F0386167D6F8123"></a></p>
+
+<h4>1.2 <span class="Heading">Обзор возможностей <strong class="pkg">GAP</strong></span></h4>
+
+<p>Система <strong class="pkg">GAP</strong> была задумана как инструмент комбинаторной теории групп - раздела алгебры, изучающего группы, заданные порождающими элементами и определяющими соотношениями. В дальнейшем, с выходом каждой новой версии системы сфера ее применения охватывала все новые и новые разделы алгебры. В разнообразии областей алгебры, охватываемых GAP сегодня, можно убедиться, даже только лишь прочитав названия разделов обширнейшей документации по системе, занимающей около 1500 страниц (которая, кстати, не только входит в состав дистрибутива, но и доступна через Интернет). Вычислительная мощь системы может быть продемонстрирована находящимся на ее сайте примером определения того, что кубик Рубика имеет 43252003274489856000 различных состояний, и сборки кубика Рубика из произвольного начального состояния в среднем за 100 ходов.</p>
+
+<p>GAP дает возможность производить вычисления с гигантскими целыми и рациональными числами, допустимые значения которых ограничены только объемом доступной памяти. Далее, система работает с циклотомическими полями, конечными полями, <span class="SimpleMath">p</span>-адическими числами, многочленами от многих переменных, рациональными функциями, векторами и матрицами. Пользователю доступны различные комбинаторные функции, элементарные теоретико-числовые функции, разнообразные функции для работы с множествами и списками.</p>
+
+<p>Группы могут быть заданы в различной форме, например, как группы подстановок, матричные группы, группы, заданные порождающими элементами и определяющими соотношениями. Более того, построив, например, групповую алгебру, можно вычислить ее мультипликативную группу, и даже задать ее подгруппу, порожденную конкретными обратимыми элементами групповой алгебры. Ряд групп может быть задан непосредственным обращением к библиотечным функциям (например, симметрическая и знакопеременная группы, группа диэдра, циклическая группа и др.).</p>
+
+<p>Функции для работы с группами включают определение порядка группы, вычисление классов сопряженных элементов, центра и коммутанта группы, верхнего и нижнего центрального рядов, ряда коммутантов, Силовских подгрупп, максимальных подгрупп, нормальных подгрупп, решеток подгрупп, групп автоморфизмов, и т.д. Для ряда конечных групп доступно определение их типа изоморфизма.</p>
+
+<p>Теория представлений групп также входит в область применения системы <strong class="pkg">GAP</strong>. Здесь имеются инструменты для вычисления таблиц характеров конкретных групп, действий над характерами и интерактивного построения таблиц характеров, определения теоретико-групповых свойств на основании свойств таблицы характеров группы. Модулярные представления групп (т.е. представления над полем, характеристика которого делит порядок группы) также могут быть исследованы с помощью <strong class="pkg">GAP</strong>.</p>
+
+<p>В версии 4.3 были существенным образом расширены возможности для работы с векторными пространствами, алгебрами и модулями. В системе могут быть определены векторные пространства над всеми доступными полями и модули над всеми доступными кольцами. Имеются алгоритмы для вычисления структуры конечномерных алгебр Ли, которые могут быть, например, заданы структурными константами или порождающими элементами, вычисления различных их Лиевских подалгебр и идеалов.</p>
+
+<p>Версия 4.4, заменившая версию 4.3, содержит множество новых особенностей, усовершенствованных алгоритмов и средств программирования, и поэтому мы рекомендуем ее установку всем пользователям предыдущих версий. В частности, в <strong class="pkg">GAP</strong> 4.4 появились новые алгоритмы и функции для работы с базисами Гребнера, алгебраическими расширениями полей, группами Галуа, таблицами характеров, векторными пространствами; новые методы для вычисления минимальных нормальных подгрупп конечной группы и цоколя конечной группы; быстрый метод для определения, является ли заданная группа подстановок симметрической или знакопеременной группой в их естественном представлении; разнообразные функции для вычислений с целочисленными матрицами, и др. нововведения.</p>
+
+<p>Кроме новых алгоритмов и функций, в <strong class="pkg">GAP</strong> 4.4 усовершенствована производительность многих уже существовавших ранее алгоритмов, в т.ч. для вычисления неприводимых представлений и их характеров, вычисления нормализаторов и сопряженных подгрупп в симметрических группах подстановок, вычисления системы представителей смежных классов в группах подстановок. Разложение подстановки в произведение порождающих элементов теперь вовзращает существенно более короткие слова (например, длины около 100 для группы кубика Рубика). Усовершенствования также коснулись списков, многочленов, матриц и матричных групп, расширений конечных групп, конечномерных алгебр.</p>
+
+<p>В вышедшей в мае 2005 г. версии <strong class="pkg">GAP</strong> 4.4.5, в библиотеку конечных групп добавлены:</p>
+
+
+<ul>
+<li><p>группы порядков <span class="SimpleMath">p^4</span>, <span class="SimpleMath">p^5</span>, <span class="SimpleMath">p^6</span> для произвольных простых <span class="SimpleMath">p</span>;</p>
+
+</li>
+<li><p>группы, порядок которых свободен от квадратов;</p>
+
+</li>
+<li><p>группы, порядок которых свободен от кубов и не превышает 50000.</p>
+
+</li>
+</ul>
+<p>Также в ней была введена новая функция <code class="code">StructureDescription</code> для вычисления структурных описаний конечных групп, например:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">l := AllSmallGroups( Size, 8 );;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List( l, StructureDescription );</span>
+[ "C8", "C4 x C2", "D8", "Q8", "C2 x C2 x C2" ]
+
+</pre></div>
+
+<p>Вместе с системой распространяется множество новых версий пакетов для <strong class="pkg">GAP</strong>. При этом изменился механизм загрузки пакетов. Для загрузки каждый пакет должен содержать файл <code class="file">PackageInfo.g</code> с мета-информацией о нем (все пакеты для <strong class="pkg">GAP</strong> 4.4 такие файлы уже содержат). За исключением этой особенности, имеется только несколько незначительных изменений (например, тривиальная группа теперь не является простой), не совместимых с <strong class="pkg">GAP</strong> 4.3.</p>
+
+<p>Среди других областей применения системы - теория графов и их автоморфизмов, теория кодирования, теория полугрупп, кристаллография, и многое другое. Существует графический интерфейс <strong class="pkg">XGAP</strong> (<span class="URL"><a href="http://www.math.rwth-aachen.de/~Max.Neunhoeffer/xgap4">http://www.math.rwth-aachen.de/~Max.Neunhoeffer/xgap4</a></span>), который работает в среде Unix/Linux и позволяет, например, графически изобразить решетку подгрупп группы (см. пример здесь: <span class="URL"><a href="http://www.gap-system.org/ukrgap/Examples/Lattice.htm">http://www.gap-system.org/ukrgap/Examples/Lattice.htm</a></span>). Информация о существующих разработках для применения в той или проблемной области может быть найдена на сайте GAP (<span class="URL"><a href="http://www.gap-system.org/">http://www.gap-system.org/</a></span>).</p>
+
+<p><a id="X7E192E5884F37B28" name="X7E192E5884F37B28"></a></p>
+
+<h4>1.3 <span class="Heading">Инсталляция и запуск системы</span></h4>
+
+<p>При успешном запуске <strong class="pkg">GAP</strong> на экране появится эмблема <strong class="pkg">GAP</strong>. После нее будет напечатана дополнительная информация о версии системы и установленных компонентах, например:</p>
+
+
+<div class="example"><pre>
+
+            #########           ######         ###########           ###  
+         #############          ######         ############         ####  
+        ##############         ########        #############       #####  
+       ###############         ########        #####   ######      #####  
+      ######         #         #########       #####    #####     ######  
+     ######                   ##########       #####    #####    #######  
+     #####                    ##### ####       #####   ######   ########  
+     ####                    #####  #####      #############   ###  ####  
+     #####     #######       ####    ####      ###########    ####  ####  
+     #####     #######      #####    #####     ######        ####   ####  
+     #####     #######      #####    #####     #####         #############
+      #####      #####     ################    #####         #############
+      ######     #####     ################    #####         #############
+      ################    ##################   #####                ####  
+       ###############    #####        #####   #####                ####  
+         #############    #####        #####   #####                ####  
+          #########      #####          #####  #####                ####  
+                                                                          
+     Information at:  http://www.gap-system.org
+     Try '?help' for help. See also  '?copyright' and  '?authors'
+    
+   Loading the library. Please be patient, this may take a while.
+GAP4, Version: 4.4.10 of 02-Oct-2007, i686-apple-darwin9.1.0-gcc
+Components:  small 2.1, small2 2.0, small3 2.0, small4 1.0, small5 1.0, 
+             small6 1.0, small7 1.0, small8 1.0, small9 1.0, small10 0.2, 
+             id2 3.0, id3 2.1, id4 1.0, id5 1.0, id6 1.0, id9 1.0, id10 0.1, 
+             trans 1.0, prim 2.1  loaded.
+Packages:    openmath 06.03.02, GAPDoc 1.1, IO 2.3, AClib 1.1, Polycyclic 2.2, 
+             Alnuth 2.2.5, CrystCat 1.1.2, Cryst 4.1.5, Carat 2.0.2, 
+             AutPGrp 1.2, CRISP 1.3.1, CTblLib 1.1.3, TomLib 1.1.2, 
+             FactInt 1.5.2, FGA 1.1.0.1, HAP 1.8.2, Homology 1.4.2, EDIM 1.2.3, 
+             IRREDSOL 1.1.2, LAGUNA 3.4, Sophus 1.23, Polenta 1.2.7, 
+             ResClasses 2.5.3  loaded.
+
+</pre></div>
+
+<p>Точный вид этого сообщения будет зависеть от набора установленных пакетов и их совместимости с операционной системой.</p>
+
+<p>Приглашение системы (командная строка) имеет следующий вид:</p>
+
+
+<div class="example"><pre>
+
+gap&gt;
+
+</pre></div>
+
+<p>Для выхода из системы применяется команда <code class="code">quit;</code> (заметим, что ввод любой команды завершается точкой с запятой и нажатием клавиши <em>Enter</em>.</p>
+
+<p><em>Примечание</em>. Для дублирования введенных команд и выводимых на экран результатов в текстовом файле используется команда <code class="code">LogTo("filename.log");</code>. Ведение файла протокола может быть остановлено командой <code class="code">LogTo();</code> (например, чтобы просмотреть его содержимое в другом окне Windows, не прерывая сеанса работы с GAP).</p>
+
+<p><a id="X7DCC72F67D740B0E" name="X7DCC72F67D740B0E"></a></p>
+
+<h4>1.4 <span class="Heading">Первые шаги в <strong class="pkg">GAP</strong></span></h4>
+
+<p>Если Вы впервые работаете с системой, Вы можете попробовать начать читать и вводить (в т.ч. через копирование и вставку) примеры из первых глав "Введения в GAP" (GAP Tutorial) с сайта <strong class="pkg">GAP</strong> в формате <span class="URL"><a href="http://www.gap-system.org/Manuals/doc/tut/chap0.html">HTML</a></span> или <span class="URL"><a href="http://www.gap-system.org/Manuals/doc/tut/manual.pdf">PDF</a></span>. В частности, там рассказывается, как пользоваться обширнейшей документацией по системе. См. также лабораторную работу "Основы работы с системой <strong class="pkg">GAP</strong> в MS Windows" (Приложение <a href="chapC.html#X7F2E9CF782BB8375"><span class="RefLink">C.1</span></a>).</p>
+
+<p>Вы можете попробовать, например, использовать <strong class="pkg">GAP</strong> как простейший калькулятор:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(9 - 7) * (5 + 6); </span>
+22 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">3^132; </span>
+955004950796825236893190701774414011919935138974343129836853841 
+gap&gt;
+
+</pre></div>
+
+<p>Определить последние пять из 12978189 цифр 45-го числа Мерсенна <span class="SimpleMath">2^43112609-1</span>, найденного в августе 2008 г. в ходе проекта GIMPS (Great Internet Mersenne Prime Search, см. <span class="URL"><a href="http://www.mersenne.org">http://www.mersenne.org</a></span>), и являющегося на сегодня самым большим из известных науке простых чисел:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a:=2^43112609-1;</span>
+&lt;integer 316...511 (12978189 digits)&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a mod 100000;</span>
+52511
+
+</pre></div>
+
+<p>Вычислить наибольший общий делитель двух целых чисел и найти его линейное представление:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Gcd(100, 48);</span>
+4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Gcdex(100, 48);</span>
+rec( coeff1 := 1, coeff2 := -2, coeff3 := -12, coeff4 := 25, gcd := 4 )
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">100*1+48*-2;</span>
+4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">100*-12+48*25;</span>
+0
+
+</pre></div>
+
+<p>Разложить целое число на множители с помощью функции <code class="code">FactorsInt</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsInt(2^64-1);</span>
+[ 3, 5, 17, 257, 641, 65537, 6700417 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsInt(2^128-1);</span>
+[ 3, 5, 17, 257, 641, 65537, 274177, 6700417, 67280421310721 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">FactorsInt(2^200-1);</span>
+[ 3, 5, 5, 5, 11, 17, 31, 41, 101, 251, 401, 601, 1801, 4051, 8101, 61681,
+  268501, 340801, 2787601, 3173389601 ]
+
+</pre></div>
+
+<p><strong class="pkg">GAP</strong> предоставляет разнообразные возможности для работы с множествами, списками, матрицами. Например, список квадратов натуральных чисел от 1 до 10 можно получить так:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List([1..10], x -&gt; x^2);</span>
+[ 1, 4, 9, 16, 25, 36, 49, 64, 81, 100 ]
+
+</pre></div>
+
+<p>А список натуральных чисел, не превосходящих 100 и являющихся произведением трех простых чисел (не обязательно различных), можно получить следующим образом:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Filtered([1..100], x -&gt; Length(Factors(x))=3 );</span>
+[ 8, 12, 18, 20, 27, 28, 30, 42, 44, 45, 50, 52, 63, 66, 68, 70, 75, 76, 78,
+  92, 98, 99 ]
+
+</pre></div>
+
+<p>Теперь зададим матрицу следующим образом:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">A:=[[1,2,3,4],[4,2,1,5],[-1,10,0,0],[2,-4,7,0]];</span>
+[ [ 1, 2, 3, 4 ], [ 4, 2, 1, 5 ], [ -1, 10, 0, 0 ], [ 2, -4, 7, 0 ] ]
+
+</pre></div>
+
+<p>Для того, чтобы вывести ее на экран в удобочитаемой форме, используется команда <code class="code">Display</code>:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(A);</span>
+[ [   1,   2,   3,   4 ],
+  [   4,   2,   1,   5 ],
+  [  -1,  10,   0,   0 ],
+  [   2,  -4,   7,   0 ] ]
+
+</pre></div>
+
+<p>Вычислим определитель этой матрицы:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">DeterminantMat(A);</span>
+-932
+
+</pre></div>
+
+<p>Таким образом, данная матрица является невырожденной, и система линейных уравнений с данной матрицей должна иметь единственное решение. Его можно найти с помощью функции <code class="code">SolutionMat( mat, vec )</code>, которая возвращает вектор-строку <code class="code">x</code> такую, что <code class="code">x * mat = vec</code> (обратите внимание, что умножается вектор-строка на матрицу, а не матрица на вектор-столбец!). Пусть <code class="code">vec=[1,-1,0,3]</code>, тогда</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v:=SolutionMat(A,[1,-1,0,3]);</span>
+[ 519/932, 36/233, -323/932, -243/932 ]
+
+</pre></div>
+
+<p>Проверим, что действительно было найдено решение системы:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">v*A;</span>
+[ 1, -1, 0, 3 ]
+
+</pre></div>
+
+<p>Можно задать подстановки и вычислить их произведение:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3); </span>
+(1,2,3) 
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3) * (1,2); </span>
+(2,3)
+
+</pre></div>
+
+<p>Найти подстановку, обратную к данной:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3)^-1; </span>
+(1,3,2)
+
+</pre></div>
+
+<p>Найти образ точки под действием данной подстановки:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">2^(1,2,3); </span>
+3
+
+</pre></div>
+
+<p>Вычислить подстановку, сопряженную с данной с помощью другой подстановки:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">(1,2,3)^(1,2); </span>
+(1,3,2)
+
+</pre></div>
+
+<p>Теперь зададим группу, порожденную двумя подстановками:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">s8 := Group( (1,2), (1,2,3,4,5,6,7,8) ); </span>
+Group([ (1,2), (1,2,3,4,5,6,7,8) ])
+
+</pre></div>
+
+<p>Как известно, это есть не что иное, как симметрическая группа подстановок 8-й степени. Теперь мы можем вычислить ее коммутант:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">a8 := DerivedSubgroup( s8 ); </span>
+Group([ (1,2,3), (2,3,4), (2,4)(3,5), (2,6,4), (2,4)(5,7), (2,8,6,4)(3,5) ])
+
+</pre></div>
+
+<p>и исследовать его свойства - найти его порядок, проверить его коммутативность:</p>
+
+
+<div class="example"><pre>
+
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Size( a8 ); IsAbelian( a8 ); </span>
+20160 
+false
+
+</pre></div>
+
+<p>Другие примеры применения <strong class="pkg">GAP</strong> описаны в следующих разделах данного методического пособия, а также в документации на английском языке, которая не только является частью системы (см. каталог <code class="file">gap4r4/doc</code>), но и доступна для просмотра и загрузки в форматах HTML и PDF на сайте системы по адресу <span class="URL"><a href="http://www.gap-system.org/Doc/manuals.html">http://www.gap-system.org/Doc/manuals.html</a></span>. Кроме того, в разделе "Изучаем алгебру с GAP" сайта Украинской группы пользователей <strong class="pkg">GAP</strong> (<span class="URL"><a href="http://www.gap-system.org/ukrgap/">http://www.gap-system.org/ukrgap/</a></span>) содержится серия примеров к курсу алгебры и теории чисел.</p>
+
+<p>Для получения новостей о <strong class="pkg">GAP</strong> рекомендуем подписаться на <strong class="pkg">GAP</strong> Forum (<span class="URL"><a href="http://mail.gap-system.org/mailman/listinfo/forum">http://mail.gap-system.org/mailman/listinfo/forum</a></span>) - англоязычный форум для обсуждения связанных с GAP вопросов, сообщений об обновлениях, новых версиях, пакетах, конференциях и др. связанных с <strong class="pkg">GAP</strong> событиях.</p>
+
+<p>Желаем Вам приятной работы с системой GAP!</p>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chap0.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chap2.html">[Следующая глава]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

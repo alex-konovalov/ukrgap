@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=koi8-r">
+<meta name="GENERATOR" content="Mozilla/4.76 [en]C-CCK-MCD (ITware edition) (Win95; U) [Netscape]">
+<meta name="Author" content="Alexander Konovalov">
+<meta name="Description" content="Система компьютерной алгебры GAP">
+<meta name="KeyWords" content="Система компьютерной алгебры GAP,алгебра, теория групп">
+<title>Система компьютерной алгебры GAP в Запорожском университете</title>
+</head><body alink="#ff0000" bgcolor="#ffffff" link="#0000ee" text="#000000" vlink="#551a8b">
+<div align="center">
+<hr size="2" width="100%"><a href="http://www.risc.uni-linz.ac.at/projects/science/school">
+<img src="banner1.gif" alt="Third RISC/SCIEnce Training School in Symbolic Computation, July 7-20, 2008, RISC, Austria"
+style="border: 0px solid ; width: 624px; height: 80px;" height="81" width="625"></a>
+</div>
+<hr size="2" width="100%">
+<div align="right"><small><a href="index.html"><i>
+<font face="Helvetica, Arial, sans-serif">на главную страницу</font></i></a></small> 
+<br>
+<br>
+ 
+<div align="center"><big><big><b>Дистрибутив системы компьютерной алгебры
+ GAP 4.4 <br>
+ на сайте Украинской группы пользователей GAP</b></big></big></div>
+ </div>
+ 
+<center><small> </small> 
+<p style="font-size: 200%;"> </p>
+ </center>
+ 
+<div align="justify"> <b><a href="http://www.gap-system.org">GAP</a></b> -
+свободно распространяемая, открытая и расширяемая система компьютерной алгебры,
+название которой означает <b><i>"Groups, Algorithms and Programming"</i></b>.
+ Разработка системы была начата в 1986 г. Она была задумана как инструмент
+ комбинаторной теории групп, а затем была распространена на ряд других разделов
+ алгебры. Наиболее свежая версия системы - <b>GAP 4.4.12</b> - вышла в декабре
+2008 г., <font face="Times New Roman, Times, serif">и мы рекомендуем ее установку 
+ всем пользователям предыдущих версий системы GAP.<br>
+ </font></div>
+ 
+<p> </p>
+ 
+<p align="justify">Дистрибутив системы может быть загружен с официального
+ сайта системы GAP (<a href="http://www.gap-system.org/">http://www.gap-system.org/</a>). 
+ На данной странице помещено описание дистрибутива системы GAP 4.4, с помощью
+ которого можно выбрать необходимую конфигурацию системы и загрузить ее дистрибутив.
+ На английском языке аналогичное описание находится на сайте системы GAP
+в разделе <a href="http://www.gap-system.org/Download/">"Download"</a>.</p>
+ 
+<hr> 
+<p> </p>
+ 
+<h2>1. Обновление или новая инсталляция ?<br>
+ </h2>
+ 
+<p align="justify">Текущей версией системы является GAP 4.4.12, вышедшая в
+ декабре 2008 г. <br>
+ </p>
+ 
+<p align="justify">Если Вы используете версию 4.3 или более раннюю, то в этом
+случае необходима новая инсталляция системы (параллельно с этим Вы можете
+ также временно оставить у себя и старую версию).<br>
+ </p>
+ 
+<p align="justify">Если же номер Вашей версии GAP начинается с 4.4 (например,
+ это может быть версия 4.4.2, вышедшая 15 апреля 2004 г.), то Вы можете обновить
+ Вашу систему без ее полной переинсталляции, загрузив обновление <tt><b>fix4r4p12</b></tt>
+ в соответствии с инструкциями, находящимися на странице <a
+ href="http://www.gap-system.org/Download/upgrade.html">http://www.gap-system.org/Download/upgrade.html</a>. 
+ <br>
+ </p>
+ 
+<p align="justify">Кроме того, если Вы уже используете последнюю версию системы
+ GAP 4.4.12, то возможно, что с момента инсталляции системы произошли обновления
+ некоторых пакетов. Это легко выяснить, введя в GAP специальную команду вида
+ <b><tt>SuggestUpgrades</tt></b>, которую можно скопировать с упомянутой
+страницы <a href="http://www.gap-system.org/Download/upgrade.html">http://www.gap-system.org/Download/upgrade.html</a>.</p>
+ 
+<p></p>
+ 
+<h2>2. Системные требования</h2>
+ 
+<p align="justify"><font face="Gill Sans,Helvetica,Arial">GAP</font> 4.4
+инсталлируется на компьютеры, работающие под управлением различных версий
+операционных систем UNIX/Linux, Windows или Macintosh (в Mac OS X можно использовать
+ UNIX-инсталляцию). Архивы с дистрибутивом системы GAP не зависят от операционной
+ системы, небольшие различия имеются только в процедуре инсталляции. <br>
+ </p>
+ 
+<p align="justify">Вместе с самой системой <font
+ face="Gill Sans,Helvetica,Arial">GAP</font> распространяется набор авторских
+ программ (пакетов), которые расширяют функциональность системы в том или
+ином направлении, и зачастую довольно существенно. Некоторые из пакетов не
+работают в системах Windows или Macintosh, а работают только в UNIX/Linux.
+Полный список пакетов с их кратким описанием и дальнейшими ссылками приведен
+на странице <a href="http://www.gap-system.org/Packages/packages.html">http://www.gap-system.org/Packages/packages.html</a>, 
+ а инструкции по их загрузке и инсталляции помещены ниже. </p>
+ 
+<p align="justify">Полная версия системы с большинством пакетов занимает около
+360 Mб дискового пространства. Для запуска <font
+ face="Gill Sans,Helvetica,Arial">GAP</font> рекомендуется наличие не менее
+ 128 MB оперативной памяти и 500 Mб свободного пространства на жестком диске
+ перед инсталляцией. <br>
+ </p>
+ 
+<p align="justify"> </p>
+ 
+<p align="justify">На самом деле система будет работать и на компьютерах с
+меньшими характеристиками, однако на устаревших компьютерах (например, Pentium-133
+и ниже с 16-32 Мб оперативной памяти) для ее запуска понадобится довольно
+продолжительное время. Кроме того, для экономии места на жестком диске пакеты
+могут быть установлены выборочно, а некоторые компоненты системы, использование
+которых не предполагается, могут быть удалены (например, документация в неиспользуемых
+форматах, библиотеки транзитивных групп и т.п.). Пример такой мини-инсталляции
+ GAP, занимающей всего около 20 Мб, может быть найден <a
+ href="UkrGAP/minitest.htm">здесь</a>. </p>
+ 
+<h2>3. Условия распространения системы GAP</h2>
+ 
+<p align="justify">GAP распространяется в соответствии с GNU Public License
+ (<a href="http://www.gap-system.org/Download/copyright.html">подробнее</a>). 
+ Авторские права на основную часть системы принадлежат <a
+ href="http://www.gap-system.org/Contacts/contacts.html">the GAP Group</a>. 
+ Авторские права на пакеты, распространяемые вместе с системой, принадлежат
+ авторам соответствующих пакетов. </p>
+ 
+<h2>4. Основные этапы инсталляции</h2>
+ 
+<ul>
+ <li>Загрузка архивов в предпочитаемом Вами формате (см. п.5).</li>
+ <li>Распаковка архивов.<br>
+ </li>
+ <li>В UNIX/Linux - компиляция ядра GAP (исполняемые файлы для Windows 
+и Macintosh входят в состав архивов).</li>
+ <li>В UNIX/Linux - дальнейшая инсталляция некоторых пакетов для достижения
+ их полной функциональности (не доступной в Windows и Macintosh).</li>
+ <li>Настройка, в зависимости от операционной системы, ссылок, скриптов,
+ командных файлов, ярлыков для обеспечения удобной работы с системой всех
+пользователей Вашего компьютера.</li>
+ <li>Опционально: запуск некоторых тестов.</li>
+ <li>Опционально, но приветствуется: сообщение в GAP Group о Вашей инсталляции.</li>
+ 
+</ul>
+ 
+<p align="justify"><strong>Альтернативные варианты инсталляции:</strong><span
+ style="font-weight: bold;"><br>
+ </span></p>
+ 
+<ul>
+ <li>Франк Любек предлагает экспериментальный вариант <a
+ href="http://www.math.rwth-aachen.de:8001/RsyncLinuxGAP">эталонного исполнимого
+ дистрибутива для Linux</a>, на основе которого Вы можете обновлять свою
+локальную версию системы с помощью утилиты <b><tt>rsync</tt></b>.<br>
+ </li>
+ <li>Александр Коновалов предлагает <a href="wininst/wininstr.htm">экспериментальный 
+ дистрибутив системы GAP для Windows</a><br>
+ </li>
+ 
+</ul>
+ <strong>Инсталляция для Debian GNU/Linux.</strong> Дистрибутив <a
+ href="http://www.debian.org">Debian</a> GNU/Linux содержит Debian-пакеты
+ c основной частью системы и некоторыми GAP-пакетами (возможно, новые версии
+ системы будут появляться там с некоторой задержкой). 
+<h2>5. Загрузка архивов</h2>
+ 
+<p align="justify">Для загрузки архивов с FTP-сервера системы GAP откройте
+ каталог <a href="ftp://ftp.gap-system.org/pub/gap/gap/">ftp://ftp.gap-system.org/pub/gap/gap/</a>. 
+ Он содержит подкаталоги <b>tar.bz2</b>, <b>tar.gz</b>, <b>win.zip</b>, <b>zoo</b>.
+ Они содержат архивы системы в соответствующих форматах: </p>
+ 
+<ul>
+ <li> 
+ <div align="justify">с расширением <strong>.zoo - </strong>традиционный 
+ формат дистрибутива GAP, который подходит для всех операционных систем. Для
+распаковки нужна специальная версия программы <b>unzoo</b>, которая извлекает
+ из архива текстовые файлы с соответствующими данной системе концами строк:</div>
+ </li>
+ 
+ <ul>
+ <li><a href="ftp://ftp.gap-system.org/pub/gap/gap/util/unzoo.c"><code>unzoo.c</code></a> 
+ - для UNIX/Linux, команда для компиляции: <code>cc -o unzoo -DSYS_IS_UNIX
+ unzoo.c</code></li>
+ <li><a
+ href="ftp://ftp.gap-system.org/pub/gap/gap/bin/win/unzoo.exe"><code>unzoo.exe</code></a> 
+ - для Windows</li>
+<!-- <li><a
+ href="ftp://ftp.gap-system.org/pub/gap/gap/bin/mac/unzoo4r4-PPC.sit"><code>unzoo4r4-PPC.sit</code></a> 
+ - для MacOS</li> -->
+ 
+ </ul>
+ 
+</ul>
+ 
+<blockquote> 
+ <p>Для просмотра содержания архива <code></code><code>XXX.zoo</code> используется
+ команда </p>
+ 
+ <pre> unzoo -l XXX.zoo<br></pre>
+ 
+ <p>Для его распаковки используется команда </p>
+ 
+ <pre> unzoo -x XXX.zoo<br></pre>
+ 
+ <p align="justify"> (Предупреждения о невозможности создания каталогов в
+процессе ее работы могут быть уверенно проигнорированы). </p>
+ </blockquote>
+ 
+<h3><code></code></h3>
+ 
+<ul>
+ <li>с расширением <strong>.tar.gz<b> </b></strong><strong>- </strong>стандартный 
+ формат для систем UNIX/Linux</li>
+ 
+</ul>
+ 
+<blockquote> 
+ <p align="justify">Наиболее используемый формат архива в среде UNIX<code></code><code></code>. 
+ Для его распаковки нужны утилиты <code>tar</code> и  <code>gzip</code>. Содержание
+архива <code>XXX.tar.gz</code> выводится командой</p>
+ 
+ <pre> gzip -dc XXX.tar.gz | tar tv<br></pre>
+ 
+ <p>Для распаковки архива применяется команда</p>
+ 
+ <pre> gzip -dc XXX.tar.gz | tar xpv</pre>
+ </blockquote>
+ 
+<ul>
+ <li>с расширением <strong></strong><strong>tar.bz2 - </strong>стандартный 
+ форматы для систем UNIX/Linux</li>
+ 
+</ul>
+ 
+<blockquote> 
+ <p align="justify">Это наиболее рекомендуемый формат, т.к. в нем достигается
+ наибольшая степень сжатия. Для его распаковки нужны утилиты <code>tar</code>
+ и <code>bzip2</code>. Содержание архива <code>XXX.tar.bz2</code> выводится
+ командой </p>
+ 
+ <pre> bzip2 -dc XXX.tar.bz2 | tar tv<br></pre>
+ 
+ <p>Для распаковки архива применяется команда</p>
+ 
+ <pre> bzip2 -dc XXX.tar.bz2 | tar xpv</pre>
+ </blockquote>
+ 
+<div align="justify"> 
+<blockquote>Заметим, что архивами этого формата <strong></strong>можно пользоваться
+ и в Windows (например, его открывают WinRAR и PowerArchiver), а FAR корректно
+ отображает файлы с концами строк в UNIX-формате.</blockquote>
+ </div>
+ 
+<div align="justify"> 
+<ul>
+ <li>с расширением <strong>-win.zip - </strong>стандартный формат для 
+Windows-систем (текстовые файлы имеют концы строк в DOS-формате). Такой архив 
+можно распаковать и в UNIX-среде с помощью утилиты <code>unzip</code>, однако 
+при этом <strong>обязательно </strong> использовать опцию <code>unzip -a</code>, 
+в результате которой концы строк будут в UNIX-формате (если о ней забыть, 
+некоторые файлы могут неправильно читаться в UNIX). </li>
+ 
+</ul>
+ </div>
+ 
+<p></p>
+<p></p>
+<p></p>
+ 
+<div align="justify">Кроме этого, имеются подкаталоги <b>bin</b> (с программной
+ <b>unzoo</b> для Windows и исполнимыми файлами GAP для Macintosh), <b>bugfixes</b>
+ (с обновлениями), и <b>util</b> (с исходным кодом программы <b>unzoo.с</b>).<br>
+ </div>
+ 
+<p> </p>
+ 
+<div align="center"><big><b>Перейдите в каталог с архивами в нужном Вам формате</b></big><big><b><br>
+ и загрузите оттуда следующие архивы:</b></big></div>
+ 
+<div align="justify"> 
+<ul>
+ <li><tt><big><b> gap4r4p12</b></big></tt> - ядро системы GAP (включая 
+исполняемые файлы для Windows). </li>
+ <li><tt><big><b> packages-&lt;дата&gt;</b></big></tt> - текущая версия
+ объединенного архива пакетов для GAP (для индивидуального обновления отдельных
+ пакетов используйте архивы пакетов их подкаталога <b>packages</b> или ссылки
+ со страницах соответствующих пакетов).</li>
+ <li><tt><big><b>xtom1r1p4</b></big></tt> - опциональный архив с некоторыми
+ дополнительными таблицами меток (около 80 Мб в распакованном виде). </li>
+ 
+</ul>
+ </div>
+ 
+<p align="justify">Кроме того, архив <b><tt><big>tools4r4p12</big></tt> </b>содержит
+ некоторые утилиты, предназначенные, в основном, для авторов пакетов (подготовка
+ документации и архивов). Если вы используете Internet Explorer для просмотра
+ html-файлов, рекомендуем также загрузить архив <big><b><tt>htmie4r4p12</tt></b></big>, 
+ содержащий документацию, оптимизированную для более корректного отображения
+ математических символов в Internet Explorer.<br>
+ </p>
+ 
+<p> </p>
+ 
+<h2>6. Инсталляция  </h2>
+ 
+<p align="justify">Этот шаг зависит от используемой операционной системы.
+ Подробные инструкции, предполагающие, что Вы уже знаете, как распаковать
+полученные архивы, находятся здесь:<br>
+ </p>
+ 
+<ul>
+ <li><a href="Install/UNIXInst.htm">Инструкция по инсталляции для UNIX</a></li>
+ <li><a href="Install/WinInst.htm">Инструкция по инсталляции для Windows</a></li>
+ <li><a href="Install/MacInst.htm">Инструкция по инсталляции для Macintosh</a></li>
+ 
+</ul>
+ 
+<p align="justify"></p>
+ 
+<h2>7. Запуск тестов </h2>
+ 
+<p align="justify">Для быстрой проверки работоспособности системы Вы можете
+ запустить ее и ввести несколько команд, например:<br>
+ </p>
+ 
+<pre>gap&gt; 3^80;<br>147808829414345923316083210206383297601<br>gap&gt; G:=SymmetricGroup(10); <br>Sym( [ 1 .. 10 ] )<br>gap&gt; Size(G);<br>3628800</pre>
+ 
+<p align="justify">Затем Вы можете запустить более обширный тест (занимает
+ несколько минут на современных компьютерах): </p>
+ 
+<pre>gap&gt; tst := Filename( DirectoriesLibrary("tst"), "testall.g" );;<br>gap&gt; Read(tst);<br>You should start GAP4 using: `gap -N -A -x 80 -r -m 100m'. The more<br>GAP4stones you get, the faster your system is. The runtime of<br>the following tests (in general) increases. You should expect<br>about 100000 GAP4stones on a Pentium 3, 1GHz.<br>The `next' time is an approximation of the running time for the next test.<br><br>Architecture: i686-pc-linux-gnu-gcc<br><br>test file GAP4stones time(msec)<br>-------------------------------------------<br>testing: /cygdrive/d/GAP4R4/tst/zlattice.tst<br><br>zlattice.tst 0 219<br><br>[ ... много строк вывода ... ]<br><br>grppcnrm.tst 40534 37795 (next ~ 39 sec)<br>testing: /cygdrive/d/GAP4R4/tst/grpmat.tst<br>grpmat.tst 40783 38251<br>-------------------------------------------<br>total 37223 229058<br>gap&gt; quit;</pre>
+ 
+<h2> </h2>
+ 
+<h3><small>8. Нужна помощь ?</small></h3>
+ <small> </small> 
+<p align="justify">Если инсталляция не удалась, рекомендуем обратиться к <a
+ href="http://www.gap-system.org/Download/index.html">разделу "Инсталляция"</a> 
+ на сайте GAP, который содержит дополнительные замечания и рекомендации.<br>
+ </p>
+ 
+<div align="justify">Если решить проблему самостоятельно не удается, Вы можете
+ сообщить о ней (на английском языке) в службу технической поддержки пользователей
+ GAP по адресу <u>support (at) gap-system.org</u> или (на украинском, русском
+ или английском языке) в Украинскую группу пользователей GAP по адресу konovalov
+ &lt;at&gt; member &lt;dot&gt; ams &lt;dot&gt; org. <br>
+ </div>
+ 
+<h2> </h2>
+ 
+<h3> </h3>
+ 
+<h3>9. Как начать ?</h3>
+ 
+<p align="justify">Если Вы впервые работаете с системой, Вы можете попробовать
+ начать читать и вводить (в т.ч. через копирование и вставку) примеры из
+первых глав <b>Введения в GAP</b> (<a
+ href="http://www.gap-system.org/Manuals/doc/tut/chap0.html">HTML</a>, 
+ <a href="http://www.gap-system.org/Manuals/doc/tut/manual.pdf">PDF</a>). 
+В частности, там рассказывается, как пользоваться обширнейшей документацией
+ по системе.</p>
+ 
+<p align="justify">Рекомендуем также подписаться на <a
+ href="http://mail.gap-system.org/mailman/listinfo/forum"><b>GAP Forum</b></a> 
+ - англоязычный форум для обсуждения связанных с GAP вопросов, сообщений об
+обновлениях, новых версиях, пакетах, конференциях и др. связанных с GAP событиях.<br>
+ </p>
+ 
+<p align="justify">Материалы о системе компьютерной алгебры GAP на русском
+ языке Вы можете найти, посетив <b><a href="index.html">страницу Украинской
+ группы пользователей GAP</a>.<br>
+ </p>
+ 
+<h3></h3>
+ 
+<h3></h3>
+ 
+<h2>10. Обратная связь</h2>
+ 
+<p align="justify">После успешной инсталляции системы сообщите, пожалуйста,
+ об этом в GAP Group, заполнив форму по адресу <a
+ href="http://www.gap-system.org/Download/feedback.html">http://www.gap-system.org/Download/feedback.html</a>, 
+ или направив краткое письмо на английском языке по адресу <u>support (at)
+ gap-system.org</u>. <br>
+ </p>
+ 
+<p align="justify">Если Вы использовали систему GAP в Вашем исследовании,
+ просим Вас включить ее в библиографию и ссылаться на нее так же, как Вы
+ссылаетесь на книги и статьи (рекомендуемые форматы ссылок приведены <a
+ href="http://www.gap-system.org/Contacts/cite.html">здесь</a>). <br>
+ </p>
+<p align="justify"></p>
+<hr width="100%"> 
+<div align="center"> 
+<div align="right"><small><a href="index.html"><i><font
+ face="Helvetica, Arial, sans-serif">на главную страницу</font></i></a><br>
+ </small></div>
+ <i>Дата последнего обновления: 7 февраля 2007 г.</i> <br>
+ </div>
+<br> 
+<br>
+<center>
+<!-- TOPPING.COM.UA CODE -->
+<script language="javascript">//<!--
+mtI="050401165347";mtG="26";mtT="8";mtS='http://050401165347.c.mystat-in.net/?';
+mtD=document;mtN=navigator.appName;mtR=escape(mtD.referrer);
+mtW="";mtC="";mtV="0";mtJ="1";
+//--></script><script language="javascript1.1">//<!--
+mtV="1";mtJ = (navigator.javaEnabled()?"1":"0");
+//--></script><script language="javascript1.2">//<!--
+mtE=screen;mtW=mtE.width;mtN!="Netscape"?mtC=mtE.colorDepth:mtC=mtE.pixelDepth;mtV="2";
+//--></script><script language="javascript1.3">//<!--
+mtV="3";
+//--></script><script language="javascript">//<!--
+mtUrl="";mtUrl+="\""+mtS+"i"+mtI+"&t"+mtT+"&g"+mtG+"&w"+mtW+"&c"+mtC+"&r"+mtR+"&v"+mtV+"&j"+mtJ+"\"";
+mtUrl="<a href=http://mytop-in.net/ target=_blank><img src="+mtUrl+"width=81 height=63 border=0 alt=\"Rated by MyTOP\"></a>";
+mtD.write(mtUrl);
+//--></script>
+<noscript>
+<a href=http://mytop-in.net/ target=_blank><img src=http://050401165347.c.mystat-in.net/?i050401165347&t8&g26&j0 width=81 height=63 border=0 alt="Rated by MyTOP"></a>
+</noscript>
+<!-- END OF NEW TOPPING CODE --> 
+</center>
+</body>
+</html>

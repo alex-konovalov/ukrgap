@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+                                                  
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Элементы теории колец</title>
+                           
+  <meta name="description" content="Элементы теории колец">
+               
+  <meta name="author" content="А.Б.Коновалов">
+</head>
+  <body>
+                                                             
+<div align="left">         
+<div align="left">         
+<div align="left">         
+<div align="left">                 <i><font face="Arial,Helvetica"><font
+ size="-1"><a href="Examples.htm">Вернуться к списку примеров</a></font></font></i> 
+           
+<hr width="100%" size="2">   </div>
+               </div>
+                           
+<center></center>
+               </div>
+                                 
+<div align="left"><b><small><font face="Helvetica, Arial, sans-serif"><br>
+        </font></small></b>        
+<div align="center"><font face="Times New Roman, Times, serif"><big><big><b><small>Сравнения 
+  в кольце целых чисел</small></b></big></big></font>   </div>
+        </div>
+                   
+<div align="center"><small><i>(по материалам дипломной работы Жатько Н.В., 
+  2003 г.)</i></small>  </div>
+       <br>
+     
+<div align="justify">C помощью системы GAP несложно установить, сравнимы ли
+два целых числа по заданному натуральному модулю. Например, зададим два числа
+и проверим, сравнимы ли они по модулю 13 двумя способами:  сначала сравним
+их остатки, а потом проверим, что их разность делится на  модуль:<br>
+   </div>
+   <br>
+   <tt><b>  gap&gt; a:=454564;<br>
+     454564<br>
+     gap&gt; b:=123133;<br>
+     123133<br>
+     gap&gt; a mod 13 = b mod 13;<br>
+     false<br>
+     gap&gt; IsInt((a-b)/13);<br>
+     false<br>
+   </b></tt><br>
+   Действительно, (<i>a</i>-<i>b</i>)/13 равняется 331431/13, и не является 
+ целым числом. <br>
+   <br>
+   Теперь зададим другую пару чисел, которые уже будут сравнимы между собой 
+ по модулю  13:<br>
+   <br>
+   <b><tt>gap&gt; a:=454564;<br>
+     454564<br>
+     gap&gt; b:=a-13*4020;<br>
+     402304<br>
+     gap&gt; a mod 13 = b mod 13;<br>
+     true<br>
+     gap&gt; IsInt((a-b)/13);<br>
+     true<br>
+   </tt></b><br>
+     
+<div align="justify">Исследуем, какой из способов проверки сравнимости более 
+ эффективен. Создадим для этого две функции,  реализующие ее различными способами:<br>
+   </div>
+   <br>
+   Первый способ (проверка того, что разность чисел делится на модуль):<br>
+   <br>
+   <tt><b>gap&gt; IsCongruent:=function(a,b,m)<br>
+     &gt; return(IsInt((a-b)/m));<br>
+     &gt; end;<br>
+     function(a, b, m) ... end<br>
+     gap&gt; IsCongruent(a,b,13);<br>
+     true<br>
+     gap&gt; IsCongruent(a+1,b,13);<br>
+     false<br>
+   </b></tt><br>
+   Второй способ (сравнение остатков от деления на модуль):<br>
+   <br>
+   <tt><b>gap&gt; IsCongruent2:=function(a,b,m)<br>
+     &gt; return(a mod m = b mod m);<br>
+     &gt; end;<br>
+     function(a, b, m) ... end<br>
+     gap&gt; IsCongruent2(a,b,13);<br>
+     true<br>
+     gap&gt; IsCongruent2(a+1,b,13);<br>
+     false<br>
+   </b></tt><br>
+     
+<div align="justify">Сравним теперь их быстродействие. Для этого, например, 
+ проверим сравнимость по модулю 13 для  всевозможных пар целых чисел от 10000 
+ до 11000:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; for i in [10000..11000] do<br>
+     &gt; for j in [10000..11000] do<br>
+     &gt; IsCongruent(i,j,13);od;od;<br>
+     gap&gt; time;<br>
+     3738<br>
+     gap&gt; for i in [10000..11000] do<br>
+     &gt; for j in [10000..11000] do<br>
+     &gt; IsCongruent2(i,j,13);od;od;<br>
+     gap&gt; time;<br>
+     2774<br>
+   </b></tt><br>
+   Таким образом, мы видим, что использование остатков по модулю приводит 
+к  более быстрой функции.<br>
+   <br>
+     
+<div align="justify">Теперь обратимся к алгебраическим структурам, возникающим 
+ на базе отношения сравнимости. Как известно, классы вычетов образуют кольцо 
+ относительно операций сложения и умножения, индуцированных сложением и умножением 
+ целых чисел. В системе GAP это кольцо получается следующим образом:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; R:=Integers mod 15;<br>
+     (Integers mod 15)<br>
+   </b></tt><br>
+     
+<div align="justify">Действительно, <tt><b>R</b></tt> является кольцом, со 
+ всеми стандартными свойствами и атрибутами, присущими кольцам такого вида:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; IsRing(R);<br>
+     true<br>
+     gap&gt; KnownPropertiesOfObject(R);<br>
+     ["IsEmpty", "IsTrivial", "IsNonTrivial", "IsFinite", "IsWholeFamily",
+ "IsDuplicateFree",  "IsAdditivelyCommutative", "IsLDistributive", "IsRDistributive"]<br>
+     gap&gt; KnownAttributesOfObject(R);<br>
+     ["Size", "Representative", "RepresentativeSmallest", "Enumerator", "EnumeratorSorted", 
+  "AsList", "AsSSortedList", "ZeroImmutable", "OneImmutable", "GeneratorsOfDomain", 
+  "MultiplicativeNeutral-Element", "GeneratorsOfRingWithOne"]</b></tt><br>
+   <br>
+   Элементами данного кольца являются классы вычетов (ясно, что их всего
+15):<br>
+   <br>
+   <tt><b>gap&gt; Elements(R);<br>
+     [ZmodnZObj(0, 15), ZmodnZObj(1, 15), ZmodnZObj(2, 15),<br>
+      ZmodnZObj(3, 15), ZmodnZObj(4, 15), ZmodnZObj(5, 15),<br>
+      ZmodnZObj(6, 15), ZmodnZObj(7, 15), ZmodnZObj(8, 15),<br>
+      ZmodnZObj(9, 15), ZmodnZObj(10, 15), ZmodnZObj(11, 15),<br>
+      ZmodnZObj(12, 15), ZmodnZObj(13, 15), ZmodnZObj(14, 15)]<br>
+     gap&gt; Size(R);<br>
+     15<br>
+   </b></tt><br>
+     
+<div align="justify">Мы видим, что каждый класс вычетов характеризуется двумя 
+ параметрами - своим представителем и модулем, по которому он рассматривается. 
+ Это дает пользователю возможность выполнять действия над классами вычетов 
+ без дополнительного указания модуля, по которому они рассматриваются, т.к. 
+ модуль будет определен автоматически (попробуйте выполнить самостоятельно 
+ действия над классами вычетов по одинаковым и разным модулям; объясните, 
+почему в одном случае они возможны, а в другом - нет).<br>
+   <br>
+   Мультипликативная группа данного кольца состоит из тех классов вычетов,
+ элементы которых взаимно просты с модулем (т.е. если из каждого такого класса
+ взять по одному элементу, то получится приведенная система вычетов по модулю
+ 15). Тогда количество таких классов (т.е. порядок мультипликативной группы
+ кольца <tt><b>R</b></tt>) определяется функцией Эйлера от числа 15. Функция
+ Эйлера в GAP вычисляется с помощью функции <tt><b>Phi</b></tt>:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; Phi(15);<br>
+     8<br>
+     gap&gt; Phi(Factorial(50));<br>
+     4218559200885839042679312107816703841788854953574400000000000000</b></tt><br>
+   <br>
+     
+<div align="justify">С другой стороны, представители восьми классов вычетов, 
+ образующих приведенную  систему вычетов, могут быть получены так:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; PrimeResidues(15);<br>
+     [1, 2, 4, 7, 8, 11, 13, 14]</b></tt><br>
+   <br>
+     
+<div align="justify">Однако, полученное в последнем примере множество не имеет
+дополнительной алгебраической  структуры. Для того, чтобы в действительности 
+ получить группу обратимых элементов рассматриваемого кольца как алгебраическую 
+ структуру, нужно поступать так:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; Units(R);<br>
+     &lt;group with 2 generators&gt;<br>
+     gap&gt; Size(last);<br>
+     8<br>
+   <br>
+   </b></tt>   
+<div align="justify"><font face="Times New Roman, Times, serif">Элементами</font> 
+ этой группы, как и элементами построенного выше кольца, также являются не 
+ целые числа, а классы вычетов.<br>
+   </div>
+   <tt><b><br>
+     gap&gt; Elements(Units(R));<br>
+     [ZmodnZObj(1, 15), ZmodnZObj(2, 15), ZmodnZObj(4, 15),<br>
+      ZmodnZObj(7, 15), ZmodnZObj(8, 15), ZmodnZObj(11, 15),<br>
+      ZmodnZObj(13, 15), ZmodnZObj(14, 15)]<br>
+   </b></tt><br>
+   Напомним, что по теореме Эйлера, если <i>a</i> и <i>m</i> - взаимно простые 
+ числа, то <i>a</i>^Phi(<i>m</i>) сравнимо с 1 по модулю <i>m</i>. В качестве 
+ упражнения проверим, что это так, для всех целых чисел <i>a</i> от 2 до 1000
+ и  <i>m</i> от 2 до 100:<br>
+   <br>
+   <tt><b>gap&gt; for a in [2..1000] do<br>
+     &gt;      for m in [2..100] do<br>
+   &gt;        if Gcd(a,m)=1 then<br>
+     &gt;            if not (a^Phi(m) mod m = 1) then<br>
+     &gt;                Print("FALSE \n");<br>
+     &gt;            fi;<br>
+     &gt;        fi;<br>
+     &gt;      od;<br>
+     &gt;    od;</b></tt><br>
+   <br>
+   Убедимся, что условие (<i>a</i>,<i>m</i>) = 1 действительно является существенным:<br>
+   <br>
+   <tt><b>gap&gt; 8^Phi(12) mod 12;<br>
+     4<br>
+   </b></tt><br>
+   Действительно, в этом случае сравнимость с 1 не имеет места.<br>
+   <br>
+     
+<div align="justify">Теперь покажем, как с помощью GAP можно решать сравнения 
+ произвольной степени  методом испытания полной системы вычетов. Сначала научимся
+ задавать многочлены с целочисленными  коэффициентами. Вначале зададим переменную
+ <tt><b>x</b></tt>:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; x:=Indeterminate(Integers, "x");<br>
+     x</b></tt><br>
+   <br>
+     
+<div align="justify">Тогда мы можем задавать многочлены от переменной <tt><b>x</b></tt> 
+ и вычислять их значения  в заданных точках с помощью функции <tt><b>Value</b></tt>: 
+ <br>
+   </div>
+   <br>
+   <tt><b>gap&gt; f:=2*x^3-3*x^2+2*x-1;<br>
+     -1+2*x-3*x^2+2*x^3<br>
+     gap&gt; Value(f,1);<br>
+     0<br>
+     gap&gt; Value(f,0);<br>
+     -1</b></tt><br>
+   <br>
+     
+<div align="justify">Теперь создадим функцию <tt><b>CongruenceSolution(f,m)</b></tt>, 
+ которая будет искать решения сравнения методом испытания полной системы вычетов:<br>
+   </div>
+   <br>
+   <tt><b>CongruenceSolution:=function(f,m)<br>
+     local sol, i;<br>
+     sol:=[];<br>
+     for i in [0..m-1] do<br>
+       if Value(f,i) mod m = 0 then<br>
+         Add(sol, i);<br>
+       fi;<br>
+     od;<br>
+     return sol;<br>
+     end;<br>
+   </b></tt><br>
+   Вот пример работы с этой функцией (используется многочлен <tt><b>f</b></tt> 
+ из предыдущего примера):<br>
+   <br>
+   <tt><b>gap&gt; CongruenceSolution(f,15);<br>
+     []<br>
+     gap&gt; CongruenceSolution(f,99);<br>
+     [47]<br>
+     gap&gt; f:=25*x^3-36*x^2+18*x+13;<br>
+     13+18*x-36*x^2+25*x^3<br>
+     gap&gt; CongruenceSolution(f,12);<br>
+     [5]<br>
+   </b></tt><br>
+     
+<div align="justify"><b>Упражнение:</b> усовершенствуйте предложенную функцию 
+ с учетом того, что в случае простого модуля количество решений сравнения
+не превосходит его степени.<br>
+   </div>
+   <br>
+     
+<div align="justify">Теперь покажем, как решать сравнения первой степени с
+одной неизвестной с помощью функции Эйлера.  Для этого составим следующую 
+ функцию:<br>
+   </div>
+   <br>
+   <tt><b>CongruenceDegreeOneSolution:=function(a,b,m)<br>
+     local sol, d, a1, b1, m1, alpha, k;<br>
+     sol:=[];<br>
+     d:=Gcd(a,m);<br>
+     if d&gt;1 and not IsInt(b/d) then<br>
+     return [];<br>
+     else<br>
+         if d=1 then<br>
+       Add(sol, (b*(a^(Phi(m)-1))) mod m);<br>
+       return sol;<br>
+     else<br>
+       a1:=a/d; b1:= b/d; m1:=m/d; <br>
+       alpha:=CongruenceDegreeOneSolution(a1, b1, m1);<br>
+    if alpha &lt;&gt; [] then<br>
+      for k in [0..d-1] do<br>
+           Add(sol, k*m1+alpha);<br>
+         od;<br>
+    fi;<br>
+       return sol;<br>
+     fi;<br>
+     fi;  <br>
+     return sol;<br>
+     end;<br>
+   </b></tt>  <br>
+   Пример  работы с данной функцией:<br>
+   <br>
+   <tt><b>gap&gt; CongruenceDegreeOneSolution(25, 15, 17);<br>
+     [4]<br>
+     gap&gt; CongruenceDegreeOneSolution(3, 8, 13);<br>
+     [7]<br>
+     gap&gt; CongruenceDegreeOneSolution(7, 4, 9);<br>
+     [7]<br>
+     gap&gt; CongruenceDegreeOneSolution(7, 4, 19);<br>
+     [6]<br>
+     gap&gt; CongruenceDegreeOneSolution(20, 10, 25);<br>
+     [[3], [8], [13], [18], [23]]<br>
+   </b></tt><br>
+   В заключение приведем еще несколько полезных теоретико-числовых функций. 
+ <br>
+   <br>
+     
+<div align="justify">Функция <tt><b>OrderMod</b></tt> возвращает порядок числа
+<i>n</i> по модулю положительного целого  числа <i>m</i>. Если <i>n</i> и
+<i>m</i> не взаимно просты, то порядок не определен, и тогда функция возвращает 
+ 0;  если же они взаимно просты, то возвращается наименьшее положительное 
+<i>i</i>, такое  что <i>n<sup>i</sup></i> сравнимо с 1 по модулю <i>m</i>. 
+<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; OrderMod(2, 7);  OrderMod(3, 7);<br>
+     3<br>
+     6        # отсюда видно, что 3 - примитивный корень по модулю 7<br>
+   </b></tt><br>
+     
+<div align="justify">Функция <tt><b>LogMod(n, r, m)</b></tt> вычисляет дискретный 
+ <i>r</i>-логарифм целого числа <i>n</i> по  модулю целого числа <i>m</i>, 
+ т.е. число <i>l</i>, такое что <i>r<sup>l</sup></i> сравнимо с <i>n</i> по
+ модулю  <i>m</i>, если такое число существует; в противном случае возвращается 
+ <tt><b>fail</b></tt>:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; l:= LogMod(2, 5, 7);  5^l mod 7 = 2;<br>
+     4<br>
+     true<br>
+     gap&gt; LogMod(1, 3, 3);  LogMod(2, 3, 3);<br>
+     0<br>
+     fail<br>
+   </b></tt><br>
+     
+<div align="justify">Функция <tt><b>PrimitiveRootMod(m)</b></tt> возвращает 
+ наименьший примитивный корень по  модулю <i>m</i>, если он существует, и 
+<tt><b>fail </b></tt>в противном случае:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; PrimitiveRootMod(409);<br>
+     21<br>
+     PrimitiveRootMod(30);<br>
+     fail<br>
+   </b></tt><br>
+   Функция <tt><b>IsPrimitiveRootMod(r, m)</b></tt> проверяет, является ли
+ <i>r</i> примитивным корнем  по модулю <i>m</i>. <br>
+   <br>
+   <tt><b>  gap&gt; IsPrimitiveRootMod(2, 541); IsPrimitiveRootMod(-539,
+541);<br>
+     true<br>
+     true<br>
+     gap&gt; IsPrimitiveRootMod(4, 541);<br>
+     false<br>
+     gap&gt; ForAny([1..29], r -&gt; IsPrimitiveRootMod(r, 30));<br>
+     false        # не существует примитивного корня по модулю 30<br>
+   </b></tt><br>
+     
+<div align="justify">Функция <tt><b>Legendre(n, m)</b></tt> вычисляет символ 
+ Лежандра <i>n</i> по <i>m</i>. Напомним, что значение символа Лежандра  
+ равно 1, если <i>n</i> &#8211; квадратичный вычет по модулю <i>m</i> (т.е. если 
+ существует  целое <i>r</i>, такое что <i>r</i><sup>2</sup> сравнимо с <i>n</i> 
+ по модулю <i>m)</i>, и -1 в противном случае. При этом если такое число <i>r</i>
+ может быть найдено с помощью функции <tt><b>RootMod(n,m)</b></tt>:<br>
+   </div>
+   <br>
+   <tt><b>gap&gt; Legendre(5, 11);<br>
+     1         # 4^2 = 5 mod 11 разрешимо<br>
+     gap&gt; RootMod(5,11);<br>
+     4         # одно из двух его решений<br>
+     gap&gt; Legendre(6, 11);<br>
+     -1        # r^2 = 6 mod 11 неразрешимо<br>
+     gap&gt; Legendre(3, 35);<br>
+     -1        # r^2 = 3 mod 35 неразрешимо</b></tt><br>
+         
+<hr width="100%" size="2">          </div>
+    <i><font face="Arial,Helvetica"><font size="-1"><a
+ href="Examples.htm">Вернуться  к списку примеров</a></font></font></i>  
+</body>
+</html>

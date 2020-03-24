@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+                                                                        
+                      
+  <meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+  <title>Вычисления в групповых кольцах с помощью пакета LAGUNA</title>
+             
+  <meta name="description"
+ content="Calculations in group rings with LAGUNA package">
+</head>
+  <body>
+                                               
+<div align="left">  
+<div align="left">  
+<div align="left">  
+<div align="left">   
+<ul>
+     <font face="Helvetica, Arial, sans-serif"><small>   </small></font>
+  
+</ul>
+       <a href="http://www.zsu.zp.ua/ppages/konoval/konov.htm"><i><font
+ face="Arial,Helvetica"><font size="-1"></font></font></i></a><i><font
+ face="Arial,Helvetica"><font size="-1"><a href="Examples.htm">Вернуться к
+списку примеров</a></font></font></i>    
+<hr width="100%" size="2">   </div>
+        </div>
+             
+<center></center>
+        </div>
+                   
+<div align="left"><b><small><font face="Helvetica, Arial, sans-serif"><br>
+ </font></small></b> 
+<div align="center"><big><font face="Times New Roman, Times, serif"><big><b><small>Элементы
+теории множеств</small></b>  </big></font></big></div>
+ </div>
+     
+<div align="center"><i>(материал разработан с участием студентки ЗГУ О.Ганюк)</i><br>
+</div>
+<br>
+В предыдущем разделе Вы уже видели примеры использования списков в GAP. Список
+можно рассматривать как аналог массивов, используемых в некоторых других
+языках программирования, однако, в отличие от них, в GAP список может состоять
+из элементов различных типов, включая даже другие списки:<br>
+<blockquote><tt><b>gap&gt; list:=[1,2,true];<br>
+[ 1, 2, true ]<br>
+gap&gt; list2:=[10,true,12,list,13];<br>
+[ 10, true, 12, [ 1, 2, true ], 13 ]</b></tt><br>
+</blockquote>
+и даже может содержать пустые элементы:<br>
+<blockquote><tt><b>gap&gt; list[10]:=15;<br>
+15<br>
+gap&gt; list;<br>
+[ 1, 2, true,,,,,,, 15 ]</b></tt><br>
+</blockquote>
+Множества в GAP являются частными случаями списков, и не должны содержать
+пустых и повторяющихся элементов. Проверить, является ли список множеством
+в соответствии с этим требованием, можно с помощью функции <tt><b>IsSet</b></tt>:<br>
+<blockquote><tt><b>gap&gt; list:=[1,2,3,4,5,6,7,8,9,10];<br>
+[ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]<br>
+gap&gt; IsSet(list);<br>
+true<br>
+gap&gt; list1:=[1,2,2,2,5,6,7,8,9,10];<br>
+[ 1, 2, 2, 2, 5, 6, 7, 8, 9, 10 ]<br>
+gap&gt; IsSet(list1);<br>
+false</b></tt><br>
+</blockquote>
+Кроме того, любой список можно преобразовать в множество, удалив из него
+пустые и повторяющиеся элементы, с помощью функции <tt><b>Set</b></tt>:<br>
+<blockquote><tt><b>gap&gt; Set(list1);<br>
+[ 1, 2, 5, 6, 7, 8, 9, 10 ]<br>
+gap&gt; list2:=[1,1,true,4,true, false];<br>
+[ 1, 1, true, 4, true, false ]<br>
+gap&gt; Set(list2);<br>
+[ 1, 4, true, false ]</b></tt><br>
+</blockquote>
+Над множествами можно выполнять стандартные операции. Например, зададим множества
+<b>А</b> и <b>В</b><b>:</b><br>
+<blockquote><b><tt>gap&gt; A:=[2,5,7,9];<br>
+[ 2, 5, 7, 9 ]<br>
+gap&gt; B:=[1,5,7,12];<br>
+[ 1, 5, 7, 12 ]</tt><br>
+  </b></blockquote>
+Эти множества не равны:<br>
+<blockquote><b><tt>gap&gt; IsEqualSet(A,B);<br>
+false</tt><br>
+  </b></blockquote>
+Множество А не является подмножеством В:<br>
+<blockquote><b><tt>gap&gt; IsSubsetSet(A,B);<br>
+false</tt><br>
+  </b></blockquote>
+Мы можем очевидным образом вычислить:<br>
+а) пересечение множеств:<br>
+<blockquote><b><tt>gap&gt; IntersectionSet(A,B);<br>
+[ 5, 7 ]</tt><br>
+  </b></blockquote>
+в) объединение множеств:<br>
+<blockquote><b><tt>gap&gt; UnionSet(A,B);<br>
+[ 1, 2, 5, 7, 9, 12 ]</tt><br>
+  </b></blockquote>
+с) разность множеств:<br>
+<blockquote><b><tt>gap&gt; Difference(A,B);<br>
+[ 2, 9 ]</tt><br>
+  </b></blockquote>
+d) симметрическую разность множеств:<br>
+<blockquote><b><tt>gap&gt; UnionSet(Difference(A,B),Difference(B,A));<br>
+[ 1, 2, 9, 12 ]</tt><br>
+  </b></blockquote>
+С помощью функции Cartesian мы можем вычислить декартово произведение множеств
+А и В:
+<blockquote><b><tt>gap&gt; Cartesian(A,B);<br>
+[ [ 2, 1 ], [ 2, 5 ], [ 2, 7 ], [ 2, 12 ], [ 5, 1 ], [ 5, 5 ], [ 5, 7 ],<br>
+  [ 5, 12 ], [ 7, 1 ], [ 7, 5 ], [ 7, 7 ], [ 7, 12 ], [ 9, 1 ], [ 9, 5 ],<br>
+  [ 9, 7 ], [ 9, 12 ] ]</tt><br>
+  </b></blockquote>
+Заметим, что для вычисления декартова произведения не требуетя, чтобы оба
+множества состояли из элементов одинакового типа. Например, мы можем вычислить
+декартово произведение числового множества на множество, состоящее из логических
+констант.
+<blockquote><tt><b>gap&gt; N:=[2,5,7,9];<br>
+[ 2, 5, 7, 9 ]<br>
+gap&gt; M:=[true, false];<br>
+[ true, false ]<br>
+gap&gt; Cartesian(N,M);<br>
+[ [ 2, true ], [ 2, false ], [ 5, true ], [ 5, false ], <br>
+[ 7, true ], [ 7, false ], [ 9, true ], [ 9, false ] ]</b></tt><br>
+</blockquote>
+ 
+<div align="center"> 
+<div align="left"><br>
+   </div>
+     
+<hr width="100%" size="2"></div>
+  </div>
+  <a href="http://www.zsu.zp.ua/ppages/konoval/konov.htm"><i><font
+ face="Arial,Helvetica"><font size="-1"></font></font></i></a><i><font
+ face="Arial,Helvetica"><font size="-1"><a href="Examples.htm">Вернуться к
+списку примеров</a></font></font></i><br>
+  <br>
+ <br>
+</body>
+</html>

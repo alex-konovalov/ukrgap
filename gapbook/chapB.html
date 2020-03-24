@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<title>GAP (UkrGAP) - Приложение B: Некоторые функции системы GAP для работы с группами</title>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="GAPDoc2HTML" />
+<link rel="stylesheet" type="text/css" href="manual.css" />
+<script src="manual.js" type="text/javascript"></script>
+<script type="text/javascript">overwriteStyle();</script>
+</head>
+<body class="chapB"  onload="jscontent()">
+
+
+<div class="chlinktop"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chapA.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chapC.html">[Следующая глава]</a>&nbsp;  </div>
+
+<p><a id="X87A266A184EF519D" name="X87A266A184EF519D"></a></p>
+<div class="ChapSects"><a href="chapB.html#X87A266A184EF519D">B <span class="Heading">Некоторые функции системы <strong class="pkg">GAP</strong> для работы с группами</span></a>
+</div>
+
+<h3>B <span class="Heading">Некоторые функции системы <strong class="pkg">GAP</strong> для работы с группами</span></h3>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdleft"><code class="code">g*h</code></td>
+<td class="tdleft">произведение элементов <span class="SimpleMath">g</span> и <span class="SimpleMath">h</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">g/h</code></td>
+<td class="tdleft">произведение элементов <span class="SimpleMath">g</span> и <span class="SimpleMath">h^-1</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">g^h</code></td>
+<td class="tdleft">вычисление <span class="SimpleMath">h^-1gh</span> (<span class="SimpleMath">g</span>, <span class="SimpleMath">h</span> - элементы группы)</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">g^i</code></td>
+<td class="tdleft">вычисление <span class="SimpleMath">i</span>-й степени элемента <span class="SimpleMath">g</span> (<span class="SimpleMath">i</span> - целое)</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">list*g</code></td>
+<td class="tdleft">умножение списка <code class="code">list</code> на элемент <span class="SimpleMath">g</span> справа</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">g*list</code></td>
+<td class="tdleft">умножение списка <code class="code">list</code> на элемент <span class="SimpleMath">g</span> слева</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">list/g</code></td>
+<td class="tdleft">умножение списка <code class="code">list</code> на элемент <span class="SimpleMath">g^-1</span> справа</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Comm( g, h )</code></td>
+<td class="tdleft">коммутатор <span class="SimpleMath">g^-1h^-1gh</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsGroup( obj )</code></td>
+<td class="tdleft">проверка, является ли <code class="code">obj</code> группой</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Order( g )</code></td>
+<td class="tdleft">порядок элемента <span class="SimpleMath">g</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Subgroup( G, gens )</code></td>
+<td class="tdleft">подгруппа группы <span class="SimpleMath">G</span>, порожденная</td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">списком элементов <code class="code">gens</code></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">AsSubgroup( G, U )</code></td>
+<td class="tdleft">подгруппа группы <span class="SimpleMath">G</span>, порожденная порождающими</td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">элементами ранее независимо созданной</td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">группы <span class="SimpleMath">U</span> (если они лежат в <span class="SimpleMath">G</span>)</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Agemo( G, p )</code></td>
+<td class="tdleft">подгруппа, порожденная <span class="SimpleMath">p</span>-ми степенями</td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">элементов <span class="SimpleMath">p</span>-группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Centralizer( G, x )</code></td>
+<td class="tdleft">централизатор элемента <span class="SimpleMath">x</span> в группе <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Centralizer( G, U )</code></td>
+<td class="tdleft">централизатор подгруппы <span class="SimpleMath">U</span> в группе <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Centre( G )</code></td>
+<td class="tdleft">центр группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">ClosureGroup( U, g )</code></td>
+<td class="tdleft">подгруппа, порожденная подгруппой <span class="SimpleMath">U</span> и элементом <span class="SimpleMath">g</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">ClosureGroup( U, S )</code></td>
+<td class="tdleft">подгруппа, порожденная подгруппами <span class="SimpleMath">U</span> и <span class="SimpleMath">S</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">CommutatorSubgroup(G,H)</code></td>
+<td class="tdleft">коммутатор подгрупп <span class="SimpleMath">G</span> и <span class="SimpleMath">H</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">ConjugateSubgroup(U,g)</code></td>
+<td class="tdleft">подгруппа, сопряженная с подгруппой <span class="SimpleMath">U</span></td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">с помощью элемента <span class="SimpleMath">g</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">DerivedSubgroup( G )</code></td>
+<td class="tdleft">коммутант группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">FittingSubgroup( G )</code></td>
+<td class="tdleft">подгруппа Фиттинга группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">FrattiniSubgroup( G )</code></td>
+<td class="tdleft">подгруппа Фраттини группы <span class="SimpleMath">G</span></td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+<div class="pcenter"><table class="GAPDocTable">
+<tr>
+<td class="tdleft"><code class="code">Normalizer( S, U )</code></td>
+<td class="tdleft">нормализатор подгруппы <span class="SimpleMath">U</span> в подгруппе <span class="SimpleMath">S</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">SylowSubgroup( G, p )</code></td>
+<td class="tdleft">Силовская <span class="SimpleMath">p</span>-подгруппа конечной группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">TrivialSubgroup( U )</code></td>
+<td class="tdleft">тривиальная подгруппа группы <span class="SimpleMath">U</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">FactorGroup( G, N )</code></td>
+<td class="tdleft">факторгруппа группы <span class="SimpleMath">G</span> по нормальной подгруппе <span class="SimpleMath">N</span></td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">(то же, что <span class="SimpleMath">G/N</span>)</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">CommutatorFactorGroup(G)</code></td>
+<td class="tdleft">факторгруппа группы <span class="SimpleMath">G</span> по ее коммутанту</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">DerivedSeries( G )</code></td>
+<td class="tdleft">ряд коммутантов группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">LowerCentralSeries( G )</code></td>
+<td class="tdleft">нижний центральный ряд группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">UpperCentralSeries( G )</code></td>
+<td class="tdleft">верхний центральный ряд группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">AbelianInvariants( G )</code></td>
+<td class="tdleft">инварианты абелевой группы <span class="SimpleMath">G</span> (если <span class="SimpleMath">G</span> - неабелева -</td>
+</tr>
+<tr>
+<td class="tdleft"></td>
+<td class="tdleft">инварианты факторгруппы группы <span class="SimpleMath">G</span> по ее коммутанту)</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Exponent( G )</code></td>
+<td class="tdleft">показатель (экспонента) группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">Index( G, U )</code></td>
+<td class="tdleft">индекс подгруппы <span class="SimpleMath">U</span> в группе <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsAbelian( G )</code></td>
+<td class="tdleft">проверка, является ли группа <span class="SimpleMath">G</span> абелевой</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsCyclic( G )</code></td>
+<td class="tdleft">проверка, является ли группа <span class="SimpleMath">G</span> циклической</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsNilpotent( G )</code></td>
+<td class="tdleft">проверка, является ли группа <span class="SimpleMath">G</span> нильпотентной</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsElementaryAbelian( G )</code></td>
+<td class="tdleft">проверка, является ли <span class="SimpleMath">G</span> элементарной абелевой</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsConjugate( G, x, y )</code></td>
+<td class="tdleft">проверка, сопряжены ли элементы <span class="SimpleMath">x</span> и <span class="SimpleMath">y</span> в группе <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsNormal( G, U )</code></td>
+<td class="tdleft">проверка, нормальна ли подгруппа <span class="SimpleMath">U</span> в группе <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsSimple( G )</code></td>
+<td class="tdleft">проверка, является ли группа <span class="SimpleMath">G</span> простой</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsSolvable( G )</code></td>
+<td class="tdleft">проверка, является ли группа <span class="SimpleMath">G</span> разрешимой</td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IsSubgroup( G, U )</code></td>
+<td class="tdleft">проверка, является ли <span class="SimpleMath">U</span> подгруппой группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">IdGroup( G )</code></td>
+<td class="tdleft">идентификация группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">ConjugacyClasses( G )</code></td>
+<td class="tdleft">классы сопряженных элементов группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">ConjugacyClass( G, g )</code></td>
+<td class="tdleft">класс сопряженности, содержащий элемент <span class="SimpleMath">g</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">NormalSubgroups( G )</code></td>
+<td class="tdleft">список нормальных подгрупп группы <span class="SimpleMath">G</span></td>
+</tr>
+<tr>
+<td class="tdleft"><code class="code">AsList( G )</code></td>
+<td class="tdleft">список элементов группы <span class="SimpleMath">G</span></td>
+</tr>
+</table><br /><p>&nbsp;</p><br />
+</div>
+
+
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Начало книги]</a>&nbsp;  <a href="chap0.html#contents">[Содержание]</a>&nbsp;  &nbsp;<a href="chapA.html">[Предыдущая глава]</a>&nbsp;  &nbsp;<a href="chapC.html">[Следующая глава]</a>&nbsp;  </div>
+
+
+<div class="chlinkbot"><span class="chlink1">Перейти к главе: </span><a href="chap0.html">Начало</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chapA.html">A</a>  <a href="chapB.html">B</a>  <a href="chapC.html">C</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+
+<hr />
+<p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
+</body>
+</html>

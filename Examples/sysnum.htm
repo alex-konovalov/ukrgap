@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Systematic numbers</title>
+<meta http-equiv="content-type" content="text/html; charset=KOI8-R">
+</head>
+<body>
+<div align="left"><i><font face="Arial,Helvetica"><font size="-1">
+<a href="Examples.htm">Вернуться к списку примеров</a></font></font></i>
+<hr width="100%" size="2">
+ 
+<div align="center">
+<h3>Реализация систематических чисел в GAP</h3>
+<i>(по материалам курсовой работы П. Москалева, декабрь 2005 г.)</i>
+</div>
+<br>
+
+<div align="justify">
+Данная работа на примере достаточно 
+простых объектов (таких, как систематические числа), описывает методику 
+корректного расширения функциональности системы компьютерной алгебры GAP. 
+Мы не ставим себе цель реализовать весь спектр действий над систематическими 
+числами, а лишь показываем, как правильно создавать в GAP новые объекты и 
+вводить операции над ними.<p/>
+
+Следует отметить, что пользователь,
+работая с GAP, проходит четыре основных этапа:<p/>
+<ol>
+  <li>интерактивный режим;</li>
+  <li>написание собственных программ;</li>
+  <li>создание новых методов для уже существующих объектов;</li>
+  <li>создание новых объектов и методов для работы с ними.</li>
+</ol>
+
+Мы показываем, как нужно действовать, находясь на четвертом этапе 
+работы с системой.<p/>
+
+Напомним, что <b>системой счисления</b> называется набор символов, с помощью 
+которых записываются числа (их называют <b>цифрами</b>), и правил для 
+выполнения действий над числами. 
+<p/>
+ 
+<b>Систематическим числом</b>
+называется число, записанное в некоторой системе счисления. Для того, чтобы
+перевести число из системы счисления с основанием <b><i>p</i></b> в систему
+с основанием <b><i>q</i></b>, необходимо делить это число, а затем и неполные
+частные в системе <b><i>p</i></b> на <b><i>q</i></b>. Остатки от деления
+и будут цифрами.<p/>
+ 
+Теперь начнем разработку библиотеки.<p/>
+ 
+Все наши функции будут размещены 
+в двух файлах <tt>SysNum.gd</tt>, <tt>SysNum.gi</tt>. Первый будет содержать 
+так называемую &#171;декларативную&#187; часть программы (т.е. в нем будут 
+объявлены тип объекта, его внутреннее представление и функции для создания 
+объектов). Второй &#8211; &#171;исполняемую&#187;, в которую будет помещена 
+реализация объявленных ранее функций и методов.
+<p/>
+ 
+Прежде всего следует отметить, 
+что GAP является, по сути, объектно-ориентированным языком программирования, 
+имеющим расширенную функциональность для решения определенных классов математических 
+задач. Таким образом, принцип построения новых объектов схож с таковым в современных
+языках программирования.<p/>
+ 
+Каждый объект системы имеет
+свой <b><i>тип</i></b>. Согласно документации, тип объекта включает несколько
+аспектов информации об объекте. <b><i>Семейство</i></b> определяет, как объект
+взаимодействует с другими объектами, <b><i>категория</i></b> определяет перечень
+допустимых операций над объектом, <b><i>представление</i></b> определяет,
+в каком виде, фактически, будет представлен объект, и, наконец, <b><i>атрибуты</i></b>
+содержат другую информацию об объекте. В итоге можно сформулировать понятие
+типа, как степень отличия <b><i>нашего объекта</i></b> от других объектов
+системы.<p/>
+ 
+Для начала нам нужно определиться
+с семейством систематических чисел. Наиболее простой способ &#8211; поместить все
+<b><i>р</i></b>-ичные числа в своем собственном кольце 
+<tt>Integers base &lt;p&gt;</tt>. 
+Тогда, например, <b><i>2</i></b>-ичные и <b><i>3</i></b>-ичные 
+числа будут лежать в разных семействах, и действия над двумя числами будут 
+возможны только в том случае, если они принадлежат одному семейству.<p/>
+ 
+Далее необходимо описать методы 
+для сложения и умножения двух чисел, причем эти методы не должны быть применимы 
+к другим объектам системы. Для этого проще всего создать новую <b>категорию</b>, 
+в которой будут лежать все элементы наших колец. Это осуществляется следующими 
+командами (начинаем заполнять декларативную часть нашей библиотеки):<p/>
+ 
+<pre>
+DeclareCategory( "IsSystematicNumberObj", IsScalar );
+DeclareCategoryCollections( "IsSystematicNumberObj" );
+</pre>
+<p/>
+ 
+Таким образом, все элементы колец <tt>Integers base &lt;p&gt;</tt>
+лежат в категории <tt>IsSystematicNumberObj</tt>, которая является 
+подкатегорией <tt>IsScalar</tt>. Данная принадлежность означает, 
+что над числами можно выполнять стандартные арифметические операции &#8211; 
+сложение, вычитание, умножение, деление, возведение в степень и др.<p/>
+ 
+Далее объявляется внутреннее представление чисел:<p/>
+ 
+<pre>
+DeclareRepresentation( "IsSystematicNumberRep", IsPositionalObjectRep, [ 1 ] );
+</pre>
+<p/>
+ 
+Наиболее простой способ хранения 
+чисел &#8211; это хранить список цифр, и ничего более. Именно такое внутреннее 
+представление мы и выбрали (<tt>IsPositionalObjectRep</tt> &#8211; 
+список, причем список цифр числа &#8211; это первый элемент этого списка). 
+Если бы наш объект имел более сложную структуру (например, это была бы группа 
+со множеством атрибутов), то удобнее было бы использовать запись &#8211; 
+<tt>IsComponentObjectRep</tt>.<p/>
+  
+<pre>
+DeclareGlobalFunction( "SystematicNumberObj" );
+DeclareGlobalFunction( "SystematicNumbersRing" );
+DeclareOperation( "Digits", [ IsPosInt, IsPosInt ] );
+DeclareGlobalFunction( "SystematicNumber" );
+DeclareGlobalFunction( "TransformNumber" );
+</pre><p/>
+
+Их назначение описывается ниже.<p/>
+ 
+Теперь перейдем к рассмотрению реализации объявленных в декларативной 
+части функций и методов.<p/>
+ 
+<tt>SystematicNumberObj</tt> &#8211; системная функция, создающая 
+объект (число) по его семейству <tt>Fam</tt> и списку цифр <tt>digits</tt>:<p/>
+ 
+<pre>
+InstallGlobalFunction( SystematicNumberObj, function( Fam, digits ) 
+return Objectify( NewType( Fam, IsSystematicNumberObj and
+  IsSystematicNumberRep ), [ digits ] );
+end );
+</pre>
+<p/>
+ 
+<tt>SystematicNumbersRing</tt> &#8211; вызывается пользователем, создает 
+кольцо <b><i>b</i></b>-ичных чисел, в случае, если <b><i>b</i></b> целое 
+положительное.<p/>
+ 
+<pre>
+InstallGlobalFunction( SystematicNumbersRing, function( b )
+local F, R;
+  if not IsPosInt( b ) then
+  Error( " must be a positive integer" );
+fi;
+F := NewFamily( Concatenation( String( b ), "-base numbers"),
+                IsSystematicNumberObj );
+F!.base := b;
+R := RingWithOneByGenerators( [ SystematicNumberObj( F, [ 1 ] ) ] );
+SetIsWholeFamily( R, true );
+SetName( R, Concatenation( "Integers base ", String( b ) ) );
+return R;
+end );
+</pre>
+<p/>
+ 
+Знак <tt>"!."</tt> дает доступ к так называемым полям объекта. Команда 
+<tt>SetIsWholeFamily</tt> говорит, что в <tt>R</tt> содержатся все 
+<b><i>b</i></b>-ичные числа для заданного <b><i>b</i></b>.<p/>
+ 
+Метод <tt>Digits</tt> переводит целое положительное десятичное 
+<b><i>n</i></b> в систему счисления по основанию <b><i>b</i></b> 
+(естественно, что <b><i>b</i></b> &#8211; целое положительное). 
+<p/>
+ 
+<pre>
+InstallMethod( Digits,
+[ IsPosInt, IsPosInt ],
+  function( n, b )
+  local digits, d, i;
+    digits := [ ];
+    i := 1;
+    d := n;
+    while true do
+    if d &lt; b then
+      digits[ i ] := d;
+      break;
+    fi;
+    digits[ i ] := d mod b;
+    d := ( d - digits[ i ] ) / b;
+    i := i + 1;
+  od;
+  return Reversed( digits );
+  end );
+</pre><p/>
+
+Пользователь может использовать этот метод для получения систематического 
+числа в виде списка.<p/>
+ 
+<tt>SystematicNumber</tt> &#8211; пользовательская функция, используемая для 
+создания систематического числа <b><i>n</i></b> в кольце <b><i>R</i></b>. 
+Ясно, что перед ее вызовом пользователь должен создать кольцо <b><i>R</i></b> 
+с помощью функции <tt>SystematicNumbersRing.</tt><p/>
+ 
+<pre> 
+InstallGlobalFunction( SystematicNumber, function( R, n )
+  local digits, b, F;
+  b := FamilyObj( GeneratorsOfRingWithOne( R )[ 1 ] )!.base;
+  digits := Digits( n, b );
+  F := FamilyObj( GeneratorsOfRingWithOne( R )[ 1 ] );
+  return SystematicNumberObj( F, digits );
+  end );
+</pre>
+<p/>
+ 
+Метод <tt>PrintObj</tt> &#8211; это стандартный метод системы для 
+отображения созданного объекта. В данном случае он последовательно выводит 
+цифры числа, причем если цифра больше 9, она берется в скобки ().<p/>
+ 
+<pre>
+InstallMethod( PrintObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep ],
+  function( x ) 
+  local i, d;
+  d := x![ 1 ];
+  for i in d do
+    if i &gt; 9 then
+      Print( "(", i, ")" );
+    else 
+      Print( i ); 
+    fi;
+  od;
+  end ); 
+</pre>
+<p/>
+ 
+<tt>TransformNumber</tt> &#8211; служебная функция, переводящая систематическое
+число в десятичную систему. Она будет использована нами при выполнении 
+арифметических операций.<p/>
+ 
+<pre>
+InstallGlobalFunction( TransformNumber,
+  function( x )
+  local d, b, i, n, L;
+  d := x![ 1 ]; 
+  b := FamilyObj( x )!.base;
+  n := 0;
+  L := Length( d );
+  for i in [ 1..L ] do
+    n := n + d[ i ] * ( b^( L - i ) );
+  od;
+  return n;
+  end );
+</pre>
+
+Далее инсталлируются методы для арифметических операций. Заметьте, что
+целью данной работы являлась демонстрация на простом примере способа
+конструирования новых объектов и введения новых операций, эффективность 
+выполнения этих операций в данном случае не учитывалась. Поэтому числа 
+из системы счисления с основанием <tt>FamilyObj( x )!.base</tt> сначала
+переводятся в десятичную систему, затем над ними выполняются действия, после
+чего результат опять переводится в систему счисления с нужным основанием.
+Разработку методов, не использующих переход к десятичной системе счисления, 
+мы оставляем читателю в качестве упражнения.
+<p/>
+
+<pre>
+InstallMethod( \=, 
+               IsIdenticalObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep, 
+               IsSystematicNumberObj and IsSystematicNumberRep ], 
+  function( x, y ) 
+  return x![ 1 ] = y![ 1 ]; 
+  end ); 
+</pre>
+<br>
+
+<pre>
+InstallMethod( \+,
+               IsIdenticalObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep,
+                 IsSystematicNumberObj and IsSystematicNumberRep ], 
+  function( x, y ) 
+  return SystematicNumberObj(FamilyObj(x), 
+                             Digits( TransformNumber(x)+TransformNumber(y), 
+                                     FamilyObj( x )!.base ) ); 
+  end ); 
+</pre>
+<br>
+
+<pre>
+InstallMethod( \*,
+               IsIdenticalObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep,
+                 IsSystematicNumberObj and IsSystematicNumberRep ], 
+  function( x, y ) 
+  return SystematicNumberObj(FamilyObj(x), 
+                             Digits( TransformNumber(x)*TransformNumber(y),
+                                     FamilyObj(x)!.base ) ); 
+  end );
+</pre>
+<br>
+
+<pre>
+InstallMethod( \<, 
+               IsIdenticalObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep,
+                 IsSystematicNumberObj and IsSystematicNumberRep ], 
+  function( x, y ) 
+  return TransformNumber( x ) < TransformNumber( y ); 
+  end );
+</pre>
+<br>
+
+<pre>
+InstallMethod( \^, 
+               IsIdenticalObj, 
+               [ IsSystematicNumberObj and IsSystematicNumberRep,
+                 IsSystematicNumberObj and IsSystematicNumberRep ], 
+  function( x, y ) 
+  return SystematicNumberObj( FamilyObj( x ), 
+                              Digits( TransformNumber(x)^TransformNumber(y), 
+                                      FamilyObj( x )!.base ) ); 
+  end ); 
+</pre>
+ 
+Функция <tt>IsIdenticalObj</tt> делает возможным использование всех этих 
+методов лишь для объектов из одного семейства.<p/>
+
+Знак <b><tt>&#171;\&#187;</tt></b> перед названием метода используется при 
+инсталляции бинарных операций, если символ операции ставится между операндами. 
+<p/>
+ 
+Теперь приведем различные примеры работы с библиотекой:<p/>
+
+<pre>
+gap> Read("SysNum.gd");
+gap> Read("SysNum.gi"); 
+gap> R := SystematicNumbersRing( 2 ); 
+Integers base 2 
+gap> a := SystematicNumber( R, 2 ); 
+10 
+gap> b := SystematicNumber( R, 3 ); 
+11 
+gap> a+b; a*b; a^b; a=b; a&lt;b;
+101
+110
+1000
+false
+true
+gap> D := SystematicNumbersRing( 10 ); 
+Integers base 10 
+gap> d1 := SystematicNumber( D, 2 ); 
+2 
+gap> d2 := SystematicNumber( D, 3 ); 
+3 
+gap> d1+d2; 
+5 
+gap> d1*d2; 
+6 
+gap> (d2^d1)^d2*d1; 
+1458 
+gap> (3^2)^3*2; 
+1458 
+gap> H := SystematicNumbersRing( 16 ); 
+Integers base 16 
+gap> h1 := SystematicNumber( H, 10 ); 
+(10) 
+gap> h2 := SystematicNumber( H, 13 ); 
+(13) 
+gap> h1+h2; 
+17 
+gap> SystematicNumber( H, 23 );      
+17
+gap> h3 := SystematicNumber( H, 16 ); 
+10 
+gap> h3^2; 
+100 
+gap> h3+h3; 
+20 
+</pre>
+<p/>
+ 
+Таким образом мы видим, что наша библиотека корректно работает 
+с различными системами счисления.
+<p/>
+</div>
+  
+Для работы с библиотекой нужно загрузить файлы 
+<a href="sysnum.gd"><tt>sysnum.gd</tt></a> и 
+<a href="sysnum.gi"><tt>sysnum.gi</tt></a>,
+и прочитать их с помощью команды <tt>Read</tt>  в том же порядке.<p/>
+      
+<hr width="100%" size="2"> <i><font face="Arial,Helvetica" size="-1">
+<a href="Examples.htm">
+Вернуться к списку примеров</a></font></i>
+</div>
+</body>
+</html>
